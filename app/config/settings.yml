@@ -1,0 +1,65 @@
+dmishh_settings:
+    layout: BidheeAdminBundle:Settings:layout.html.twig
+    template: BidheeAdminBundle:Settings:manage.html.twig
+    security:
+         manage_global_settings_role: ROLE_SUPER_ADMIN
+         users_can_manage_own_settings: true
+    settings:
+        facebook_page_link:
+            validation:
+                type: url
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+        twitter_profile_link:
+            validation:
+                type: url
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+        google_plus_page_link:
+            validation:
+                type: url
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+        youtube_link:
+            validation:
+                type: url
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+        google_play_store_link:
+            validation:
+                type: url
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+        ios_app_store_link:
+            validation:
+                type: url
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+        header_content:
+            validation:
+                type: textarea
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+                        rows: 12
+        breaking_news_limit:
+            validation:
+                type: textarea
+                options:
+                    required: false
+                    attr:
+                        class: form-control
+                        rows: 1

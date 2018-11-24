@@ -1,0 +1,5 @@
+services:
+
+    bidhee.epaper.service:
+        class: Bidhee\EpaperBundle\Service\EpaperService
+        arguments: ['@doctrine.orm.entity_manager']

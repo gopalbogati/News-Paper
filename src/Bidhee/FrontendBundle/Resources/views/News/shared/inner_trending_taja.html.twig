@@ -1,0 +1,27 @@
+<div class="tabber second">
+    <ul class="options">
+
+        <li><a href="#tab-1" title="">ताजा अपडेट</a></li>
+        <li><a href="#tab-2" title="">ट्रेन्डिङ</a></li>
+    </ul>
+    <div id="tab-1">
+        <ul>
+            {% if tajaUpdates is not null %}
+                {% for news in tajaUpdates|slice(0,7) %}
+
+                    <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                           title="{{ news.title }}">{{ news.title }}</a></li>
+
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+    <div id="tab-2">
+        <ul>
+            {% for news in trending %}
+                <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                       title="{{ news.title }}">{{ news.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

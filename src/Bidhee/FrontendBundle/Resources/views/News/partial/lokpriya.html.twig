@@ -1,0 +1,31 @@
+<div class="mod_popular">
+    <div class="heading">
+        <span><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}" title="">लोकप्रिय</a></span>
+    </div>
+    <div class="block">
+        {% for key,news in getViewCountNews|slice(0,3) %}
+            <div class="box">
+                {% if news.featured_image is not null %}
+                    <figure>
+                        <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}" title="{{ news.title }}"><img
+                                    src="{{ news.featured_image|relative_path| imagine_filter('bidhee_thumbnail_270_160') }}"
+                                    height="160"
+                                    width="270" alt="{{ news.title }}">
+                        </a>
+                    </figure>
+                    <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                           title="{{ news.title }}">{{ news.title }}</a></h5>
+                {% else %}
+                    <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                           title="{{ news.title }}">{{ news.title }}</a></h5>
+
+                {#    <div class="intro"><div class="overflow">
+                            {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(150) }}
+                        </div>
+                    </div>#}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+</div>

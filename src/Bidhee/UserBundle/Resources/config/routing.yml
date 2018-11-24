@@ -1,0 +1,47 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix:   /%admin_dir_mask%
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+bidhee_admin_users_list:
+    path: /%admin_dir_mask%/admin/user/list
+    defaults: { _controller: BidheeUserBundle:User:index }
+
+bidhee_admin_user_create:
+    path: /%admin_dir_mask%/admin/user/new
+    defaults: { _controller: BidheeUserBundle:User:create }
+
+bidhee_admin_user_update:
+    path: /%admin_dir_mask%/admin/user/{id}/update
+    defaults: { _controller: BidheeUserBundle:User:update }
+
+bidhee_admin_user_change_password:
+    path: /%admin_dir_mask%/admin/user/{id}/change-password
+    defaults: { _controller: BidheeUserBundle:User:changePassword }
+
+bidhee_admin_author_list:
+    path: /%admin_dir_mask%/admin/author/list
+    defaults: { _controller: BidheeUserBundle:Author:index }
+
+bidhee_admin_author_create:
+    path: /%admin_dir_mask%/admin/author/new
+    defaults: { _controller: BidheeUserBundle:Author:create }
+
+bidhee_admin_author_update:
+    path: /%admin_dir_mask%/admin/author/{id}/update
+    defaults: { _controller: BidheeUserBundle:Author:update }

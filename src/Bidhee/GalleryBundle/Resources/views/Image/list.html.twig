@@ -1,0 +1,68 @@
+{% extends "BidheeAdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <a href="{{ url('bidhee_admin_gallery_list') }}"><i class="fa fa-arrow-left"></i> Back to Album</a>
+    </div>
+
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            {#<div class="panel-heading"><h4 class="panel-title">{{ gallery.name|upper }} | <small>{{ gallery.description }}</small></h4></div>#}
+            <div class="panel-body">
+
+                <p class="margin">
+                    <small>{{ gallery.description }}</small>
+                </p>
+
+                {% if images|length %}
+                    {% for image in images %}
+                        <div class="" style="float: left; margin:1rem; position:relative; ">
+                            <a href="{{ url('bidhee_admin_gallery_image_delete', {'id':image.id}) }}" title="Delete"
+                               onclick="return confirm('Are you sure to remove image')"
+                               style="position:absolute; top:-8px; right:-8px; color:#900;"><i
+                                        class="fa fa-times-circle bg-maroon"></i></a>
+                            <a href="{{ asset('uploads/gallery/'~image.path) }}" target="_blank">
+                                <img src="{{ asset('uploads/gallery/thumb/'~image.path) }}" alt="{{ image.caption }}">
+                            </a>
+                            <p>
+                                <small>{{ image.caption }}</small>
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center">Sorry ! No images to show. You can start adding now.</p>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title">Add New Image</h4></div>
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'class':'validate'}}) }}
+                <div class="form-group col-md-12 no-margin">
+                    {{ form_label(form.file) }}
+                    {{ form_widget(form.file) }}
+                </div>
+
+                <div class="form-group col-md-12 no-margin">
+                    {{ form_label(form.caption) }}
+                    {{ form_widget(form.caption) }}
+                </div>
+
+                <div class="form-group col-md-12 margin">
+                    {{ form_widget(form.save) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        {#<a href="{{ path('bidhee_admin_gallery_image_add', {'id' : gallery.id}) }}" class="btn btn-primary" >Add New Image</a>#}
+    </div>
+
+
+{% endblock %}

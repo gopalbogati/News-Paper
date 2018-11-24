@@ -1,0 +1,152 @@
+{% extends 'BidheeFrontendBundle::layout.html.twig' %}
+
+
+{% block ogTags %}
+    <meta property="og:image" content="{{ ('/uploads/gallery/' ~ images[0].path) }}"/>
+    <meta property="og:title" content="{{ images[0].caption }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og.author" content=""/>
+
+    {#<meta property="og:url" content="{{ path('bidhee_frontend_album',{'id':albums[0].id}) }}"/>#}
+    <meta property="og:description" content="{{ images[0].caption }}"/>
+{% endblock %}
+
+
+{% block title %}
+    <title>
+        Janata Samachar Model Gallery - {{ images[0].album.name }}
+    </title>
+{% endblock %}
+
+{% block content %}
+    <!-- gallery CSS -->
+    <link href="{{ asset('bundles/bidheefrontend/gallery-viewer/css/unite-gallery.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/bidheefrontend/gallery-viewer/themes/default/ug-theme-default.css') }}"
+          rel="stylesheet">
+    <section id="wrapper">
+        <div class="container">
+            <div class="col-12">
+                <!-- Main Content -->
+                <article class="full">
+                    <div class="models">
+                        <div class="title">{{ images[0].album.name }}  </div>
+                        <div class="info">
+                            <div class="date">{{ images[0].album.createdOn.date|nepaliDate }}</div>
+                            <div class="share">
+                                <span class='st_facebook_hcount' displayText='Facebook'></span>
+                                <span class='st_twitter_hcount' displayText='Tweet'></span>
+                            </div>
+                        </div>
+                        <div class="model-slide">
+                        </div>
+                        <!-- GALLERY THUMB SECTION
+   ================================================== -->
+                        <div class="section" style="margin-top:0;">
+
+                            <div id="gallery" style="display:none;">
+
+                                {% for image in images %}
+                                    <img alt="Preview Image 1"
+                                         src="{{ ('uploads/gallery/' ~ image.path) | imagine_filter('bidhee_thumbnail_379_276') }}"
+                                         data-image="{{ ('/uploads/gallery/' ~ image.path) }}"
+                                         data-description="{{ image.caption }}">
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="title">अन्य मोडलहरु</div>
+                        <div class="listing">
+                            {% for album in albums %}
+                                <div class="box"><a
+                                            href="{{ path('bidhee_frontend_model_gallery_detail', {'id': album.id}) }}"
+                                            title="">
+                                        <figure><img
+                                                    src="{{ ('uploads/gallery/' ~ album.images[0].path ) | imagine_filter('bidhee_thumbnail_270_420') }}"
+                                                    height="420" width="270" alt=""></figure>
+                                    </a>
+                                    <h5>{{ album.name }}</h5>
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </article>
+                <aside></aside>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block scripts %}
+
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-common-libraries.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-functions.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-thumbsgeneral.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-thumbsstrip.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-touchthumbs.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-panelsbase.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-strippanel.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-gridpanel.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-thumbsgrid.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-tiles.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-tiledesign.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-avia.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-slider.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-sliderassets.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-touchslider.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-zoomslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-video.js') }}"></script>
+    <!--UG Gallery-->
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-gallery.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-lightbox.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-carousel.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/bidheefrontend/gallery-viewer/js/ug-api.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/gallery-viewer/themes/default/ug-theme-default.js') }}"></script>
+    <script type="text/javascript">
+
+        //Note initial Changes are done in ug-gallery.js too
+        jQuery(document).ready(function () {
+            jQuery("#gallery").unitegallery({
+                gallery_width: 1680,							//gallery width
+                gallery_height: 850,
+                slider_scale_mode: "fit",//fill,fit,down
+                thumb_width: 88,								//thumb width
+                thumb_height: 50,							//thumb height
+                thumb_fixed_size: true,						//true,false - fixed/dynamic thumbnail width
+
+                thumb_border_effect: true,					//true, false - specify if the thumb has border
+                thumb_border_width: 0,						//thumb border width
+                thumb_border_color: "#000000",				//thumb border color
+                thumb_over_border_width: 0,					//thumb border width in mouseover state
+                thumb_over_border_color: "#d9d9d9",			//thumb border color in mouseover state
+                thumb_selected_border_width: 1,				//thumb width in selected state
+                thumb_selected_border_color: "#d9d9d9"		//thumb border color in selected state
+            });
+        });
+    </script>
+
+
+
+
+{% endblock %}

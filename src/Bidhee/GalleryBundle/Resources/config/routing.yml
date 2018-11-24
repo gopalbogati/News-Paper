@@ -1,0 +1,31 @@
+bidhee_admin_gallery_list:
+    path:     /admin/gallery/list
+    defaults: { _controller: BidheeGalleryBundle:Gallery:listGallery }
+
+bidhee_admin_gallery_add:
+    path:     /admin/gallery/add
+    defaults: { _controller: BidheeGalleryBundle:Gallery:addGallery }
+
+bidhee_admin_gallery_edit:
+    path:     /admin/gallery/{id}/edit
+    defaults: { _controller: BidheeGalleryBundle:Gallery:editGallery }
+
+bidhee_admin_gallery_delete:
+    path:     /admin/gallery/{id}/delete
+    defaults: { _controller: BidheeGalleryBundle:Gallery:deleteGallery }
+
+bidhee_admin_gallery_image_list:
+    path:     /admin/gallery/{id}/list
+    defaults: { _controller: BidheeGalleryBundle:Gallery:listImage }
+
+bidhee_admin_gallery_image_add:
+    path:     /admin/gallery/{id}/image/add
+    defaults: { _controller: BidheeGalleryBundle:Gallery:addImage }
+
+bidhee_admin_gallery_image_edit:
+    path:     /admin/gallery/{id}/image/edit
+    defaults: { _controller: BidheeGalleryBundle:Gallery:editImage }
+
+bidhee_admin_gallery_image_delete:
+    path:     /admin/gallery/{id}/image/delete
+    defaults: { _controller: BidheeGalleryBundle:Gallery:deleteImage }

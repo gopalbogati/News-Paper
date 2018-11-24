@@ -1,0 +1,26 @@
+<section>
+    <div class="container">
+        <div class="row">
+            {% set innerAddTop = getAds('inner-add-top',20) %}
+            {% if innerAddTop|length > 0 %}
+
+                {% for ad in innerAddTop %}
+                    <div class="inner-add-section">
+                        <div class="ime-add">
+
+                            <a href="{{ ad.adLink }}" title="{{ ad.adTitle }}" target="_blank">
+                                {% if ad.file is not null %}
+                                    <img src="{{ ad.file }}" alt="{{ ad.adTitle }}" class="img-responsive">
+                                {% elseif ad.script is not null %}
+                                    {{ ad.script|raw }}
+                                {% endif %}
+                            </a>
+                        </div>
+                        <!---add end -->
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+    </div>
+</section>

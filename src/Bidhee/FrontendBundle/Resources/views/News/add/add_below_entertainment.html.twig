@@ -1,0 +1,24 @@
+<section>
+    <div class="container">
+        <div class="col-12">
+            <div class="bigyapan">
+                {% set innerTop = getAds('below-entertainment-menu',1) %}
+                {% if innerTop|length > 0 %}
+                    {% for ad in innerTop %}
+                        <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}">
+                        {% if ad.file is not null %}
+                            <img
+                                    src="{{ ad.file }}"
+                                    height="102" width="1170" alt=""/></a>
+                            </figure>
+                        {% elseif ad.script is not null %}
+                            {{ ad.script|raw }}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

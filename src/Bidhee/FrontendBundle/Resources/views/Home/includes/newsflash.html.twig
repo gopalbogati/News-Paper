@@ -1,0 +1,88 @@
+<!-- Newspaper -->
+{% set currentTime = "now"|date("Hi", "Asia/Kathmandu") %}
+{% if currentTime >=700 and currentTime <=900 %}
+
+    <section>
+        <div class="container">
+            <div class="col-12">
+                <div id="newspaper">
+                    <div class="title">पत्रपत्रिकाबाट</div>
+                    <div class="block">
+                        {% for news in patrapatrikaNews|slice(0,1) %}
+                            <div class="first">
+                                {% if news.featuredImage %}
+                                    <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}" title=""><img
+                                                    src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_480_290') }}"
+                                                    height="290" width="480" alt=""></a>
+                                    </figure>
+                                {% endif %}
+                                <h4><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}">{{ news.title }}</a></h4>
+                            </div>
+                        {% endfor %}
+                        <div class="second">
+
+                            <ul>
+                                {% for news in patrapatrikaNews|slice(1,4) %}
+                                    <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}">
+                                            {% if news.featuredImage %}
+                                                <figure><img
+                                                            src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_65') }}"
+                                                            height="65" width="100"
+                                                            alt=""></figure>
+                                            {% endif %}
+                                            <h5>{{ news.title }}</h5>
+                                        </a></li>
+                                {% endfor %}
+
+                            </ul>
+
+                        </div>
+                        <div class="third">
+                            <ul>
+                                {% for news in patrapatrikaNews|slice(5,6) %}
+                                    <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}">{{ news.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+
+<!-- Newsflash -->
+<section id="newsflash">
+    <div class="container">
+        <div class="col-12">
+            {% if breakingNews %}
+                {% for news in breakingNews %}
+                    <div class="block">
+                        {% if news.newsSlug is not null %}
+                            <div class="slug">{{ news.newsSlug }}</div>
+                        {% endif %}
+
+                        <div class="title"><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                              title="{{ news.title }}">{{ news.title }}</a></div>
+
+                        <div class="subtitle">{{ news.subtitle }}</div>
+                        {% if news.featuredImage is not null %}
+                            <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}"><img
+                                            src="{{ news.featuredImage }}" alt=""></a>
+                            </figure>
+                        {% endif %}
+                        <div class="intro"><a
+                                    href="{{ path('bidhee_frontend_news', {'id': news.id}) }}">{{ news.introText }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!-- /Newsflash -->

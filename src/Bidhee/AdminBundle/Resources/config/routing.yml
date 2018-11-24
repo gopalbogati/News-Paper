@@ -1,0 +1,4 @@
+bidhee_admin_dashboard:
+    path:     /
+    defaults: { _controller: BidheeAdminBundle:Default:index }
+

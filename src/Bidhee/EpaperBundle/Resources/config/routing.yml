@@ -1,0 +1,15 @@
+bidhee_admin_epaper_list:
+    path:     /admin/epaper/list
+    defaults: { _controller: EpaperBundle:Epaper:index }
+
+bidhee_admin_epaper_create:
+    path:     /admin/epaper/new
+    defaults: { _controller: EpaperBundle:Epaper:create }
+
+bidhee_admin_epaper_update:
+    path:     /admin/epaper/{id}/update
+    defaults: { _controller: EpaperBundle:Epaper:update }
+
+bidhee_admin_epaper_delete:
+    path:     /admin/epaper/{id}/delete
+    defaults: { _controller: EpaperBundle:Epaper:delete }

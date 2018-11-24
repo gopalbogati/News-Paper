@@ -1,0 +1,4 @@
+services:
+    bidhee.gallery.service:
+        class: Bidhee\GalleryBundle\Service\GalleryService
+        arguments: [ @doctrine.orm.entity_manager, @security.token_storage ]

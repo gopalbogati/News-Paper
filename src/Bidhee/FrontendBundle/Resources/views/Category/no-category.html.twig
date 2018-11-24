@@ -1,0 +1,17 @@
+{% extends '@BidheeFrontend/layout.html.twig' %}
+{% block title %}
+    <title>Janata Samachar - Category Not Found</title>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="inner-section">
+            <div class="row">
+                <div class="alert alert-danger" style="width: 100%;margin-top: 10px; text-align:center;" role="alert">
+                    <div>यस स्तम्भमा नयाँ लेखहरु फेला परेन !</div>
+                    <div><a href="{{ path('bidhee_frontend_homepage') }}">गृहपृष्ठमा जान यहाँ क्लिक गर्नुहोस् ।</a><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

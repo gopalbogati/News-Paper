@@ -1,0 +1,16 @@
+services:
+    bidhee.twig_extension.bidhee_template:
+        class: Bidhee\FoundationBundle\Twig\Extension\BidheeTemplateExtension
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.date:
+        class: Twig_Extensions_Extension_Date
+        tags:
+             - { name: twig.extension }
+
+    twig.extension.asset_version:
+        class: Pandeydip\AssetVersion\Twig\GitHelperExtension
+        tags:
+             - { name: twig.extension }

@@ -1,0 +1,100 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+
+{% block content %}
+
+    <div class="col-md-12 margin-bottom">
+        <a href="{{ url('bidhee_admin_author_create') }}" class="btn btn-default pull-right">
+            <i class="fa fa-plus"></i>
+            Add New Author
+        </a>
+    </div>
+    <div class="col-md-12 margin-bottom" id="authorFilterForm">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Filter</h4>
+            </div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal" method="get">
+
+                    <div class="col-md-12">
+                        <div class="form-group-sm col-md-4">
+                            <label for="title">Name</label>
+                            <input type="text" class="form-control" name="name"
+                                   value="{{ app.request.query.get('name') }}">
+                        </div>
+                        <div class="form-group-sm col-md-4">
+                            <label for="title">Username</label>
+                            <input type="text" class="form-control" name="username"
+                                   value="{{ app.request.query.get('username') }}">
+                        </div>
+                        <div class="form-group-sm col-md-4">
+                            <label for="title">Email</label>
+                            <input type="text" class="form-control" name="content"
+                                   value="{{ app.request.query.get('email') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label for="">&nbsp;</label><br/>
+                            <input type="submit" class="btn btn-primary" value="FILTER">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            {% if authors|length %}
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Picture</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Bio</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for author in authors %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>
+                                {% if author.imageName is not null %}
+                                    <img src="{{ ('uploads/author/' ~ author.imageName) | imagine_filter('bidhee_thumbnail_100_100') }}"
+                                         alt="{{ author.name }}">
+                                {% endif %}
+                            </td>
+                            <td>{{ author.name }}</td>
+                            <td>{{ author.username }}</td>
+                            <td>{{ author.email }}</td>
+                            <td>{{ author.phone1 }}</td>
+                            <td>{{ author.bio|raw }}</td>
+                            <td>
+                                {% if is_granted('ROLE_USER_MANAGER') %}
+                                    <a href="{{ url('bidhee_admin_author_update', {'id':author.id}) }}" title="edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                {{ no_results('No authors to list.')|raw }}
+            {% endif %}
+            <div class="clearfix">
+                <div class="col-md-12 text-right">
+                    {{ knp_pagination_render(authors) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+{% endblock content %}

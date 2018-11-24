@@ -1,0 +1,28 @@
+<div class="col-sm-3">
+    <h4 class="heading-title">
+        <a class="#"
+           href="{{ url('bidhee_frontend_news_by_category', {'id':13}) }}"><span>विश्व</span></a>
+    </h4>
+    {% for news in worldNews %}
+        <div class="middle-image">
+            <div class="middle-top">
+                <div class="middle-left">
+                    {% if news.featuredImage %}
+                        <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}">
+                            <img alt="{{ news.title }}"
+                                 src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_100') }}">
+                        </a>
+                    {% endif %}
+                </div>
+                <!--middle-left-->
+                <div class="middle-right">
+                    <h4>
+                        <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}">{{ news.title }}</a>
+                    </h4>
+                </div>
+                <!--middle-right-->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

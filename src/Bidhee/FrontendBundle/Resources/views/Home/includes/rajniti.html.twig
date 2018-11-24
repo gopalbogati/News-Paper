@@ -1,0 +1,111 @@
+<section>
+
+    <div class="container">
+        <div class="col-8">
+            <div class="mod_politics">
+                <div class="heading">
+                    <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':1}) }}" title="">राजनीति</a></span>
+                    <a href="{{ url('bidhee_frontend_news_by_category', {'id':1}) }}" class="more">थप राजनीति</a>
+                </div>
+                <div class="block">
+                    {% if rajnitiNews %}
+                        {% for key,news in rajnitiNews|slice(0,1) %}
+
+                            <div class="colLeft">
+                                <h4><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}">{{ news.title }}</a></h4>
+                                {% if news.featuredImage %}
+                                    <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                               title="{{ news.title }}"><img
+                                                    src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_480_290') }}"
+                                                    alt="{{ news.title }}"></a></figure>
+                                {% endif %}
+
+                                <div class="intro"><div class="overflow">
+                                        {{ news.publishOn|date('Y-m-d')|nepaliDate }},
+                                        {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="colRight">
+                        {% if rajnitiNews %}
+                        {% for key,news in rajnitiNews|slice(1,1) %}
+                        <ul>
+                            <li>
+                                <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}">{{ news.title }}</a></h5>
+                                <div class="tbl">
+                                    {% if(news.featuredImage) %}
+                                        <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                                   title=""><img
+                                                        src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_65') }}"
+                                                        height="65" width="100" alt="{{ news.title }}"></a></figure>
+                                    {% endif %}
+                                    <div class="intro"><div class="overflow">
+                                            {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(15) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% endif %}
+                            {% if rajnitiNews %}
+                                {% for key,news in rajnitiNews|slice(3,1) %}
+                                    <li>
+                                        <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                               title="{{ news.title }}">{{ news.title }}</a></h5>
+                                        <div class="tbl">
+                                            <div class="intro"><div class="overflow">
+                                                    {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(15) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+                            {% endif %}
+                            {% if rajnitiNews %}
+                                {% for key,news in rajnitiNews|slice(4,2) %}
+                                    <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}">{{ news.title }}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mod_bichar">
+                <div class="heading">
+                    <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':10}) }}" title="">विचार/ब्लग
+                        </a></span>
+                    <a href="{{ url('bidhee_frontend_news_by_category', {'id':10}) }}" class="more">थप विचार/ब्लग
+                    </a>
+                </div>
+                <ul class="block">
+                    {% if bicharNews %}
+                        {% for key,news in bicharNews %}
+                            <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}" title="{{ news.title }}">
+                                    {% if news.featuredImage %}
+                                        <figure><img
+                                                    src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_60_60') }}"
+                                                    alt=""></figure>
+                                    {% endif %}
+                                    <div class="tbl">
+                                        <h5>{{ news.title }}</h5>
+                                        <div class="author">
+                                            {% if news.authorcheck == true %}{% if news.authorName is not null%}- {{news.authorName}}{% endif %}{% endif %}</div>
+                                        {#{% if news.author_name is not null%}<i class="fa fa-user"></i>{{news.author_name}}{% endif %}#}
+
+                                    </div>
+                                </a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

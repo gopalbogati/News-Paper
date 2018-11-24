@@ -1,0 +1,6 @@
+services:
+    bidhee.twig_extension.content:
+        class: Bidhee\ContentBundle\Extensions\Twig\ContentExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }

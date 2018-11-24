@@ -1,0 +1,16 @@
+<div class="mod_model">
+    <div class="heading">
+        <span><a href="{{ path('bidhee_frontend_model_gallery_list') }}" title="">मोडल वाच</a></span>
+        <a href="{{ path('bidhee_frontend_model_gallery_list') }}" class="more">थप फोटो</a>
+    </div>
+    <div class="block">
+        {% for key,album in albums|slice(0,1) %}
+            <div class="box"><a href="{{ path('bidhee_frontend_model_gallery_detail', {'id': album.id}) }}" title="">
+                    <figure><img src="{{ asset('uploads/gallery/') }}{{ album.images[0].path }}"
+                                 height="420" width="270" alt="{{ album.name }}"></figure>
+                    <h5>{{ album.images[0].caption }}</h5>
+                </a></div>
+        {% endfor %}
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+{% extends '@BidheeFrontend/layout.html.twig' %}
+{% block title %}
+    <title>
+        Search results for keyword {{ app.request.get('key') }}
+    </title>
+{% endblock %}
+{% block content %}
+
+    <!-- ADD SECTION
+    ================================================== -->
+    <!--add wrapper-->
+    {% include 'BidheeFrontendBundle:News/add:inner_add_top.html.twig' %}
+
+    <section id="wrapper">
+        <div class="container">
+            <div class="col-12">
+                <!-- Main Content -->
+                <article>
+                    <div class="newslist">
+                        {% set page = app.request.get('page') %}
+                        {% set startFrom = 0 %}
+                        {% set endTo = 5 %}
+                        {% if searchNews is not null %}
+
+                            {% for news in searchNews|slice(startFrom, endTo) %}
+                                <div class="box">
+                                    <h3><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}">{{ news.title }}</a></h3>
+                                    <div class="tbl">
+                                        <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                                   title="{{ news.title }}">
+                                                {% if news.featuredImage is not null %}
+                                                    <img src="{{ news.featuredImage|relative_path|imagine_filter('bidhee_thumbnail_250_150') }}"
+                                                         height="150" width="250" alt="{{ news.title }}">
+                                                {% endif %}
+                                            </a>
+                                        </figure>
+                                        <div class="intro">
+                                            ​{{ news.introText }}
+                                            <div class="readon"><a
+                                                        href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                                        title="{{ news.title }}">थप
+                                                    समाचार...</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <h4>No data available</h4>
+                        {% endif %}
+
+
+                    </div>
+                    <div class="pagenav">
+                        <!-- Pagination -->
+                        {#{{ knp_pagination_render(News)|raw }}#}
+
+                    </div>
+                </article>
+
+
+                <!-- Sidebar -->
+
+                <aside>
+                    {% include '@BidheeFrontend/Add/add_inner_top_right.html.twig' %}
+
+                    {% include '@BidheeFrontend/News/shared/inner_trending_taja.html.twig' %}
+
+                    {% include '@BidheeFrontend/Add/add_inner_before_model_watch.html.twig' %}
+
+                    {% include '@BidheeFrontend/Model-watch/model_watch.html.twig' %}
+
+                    {% include '@BidheeFrontend/Add/add_inner_after_model_watch.html.twig' %}
+
+
+                </aside>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% if relatedNewsByCategory|length>0 %}
+    <div class="mod_popular">
+        <div class="heading">
+            <span><a>सम्बन्धित समाचार</a></span>
+        </div>
+        <div class="block">
+            {% for relatedNews in relatedNewsByCategory %}
+            <div class="box">
+                {% if relatedNews.featuredImage is not null %}
+                <figure>
+                    <a href="{{ path('bidhee_frontend_news', {'id': relatedNews.id}) }}"
+                       title="{{ relatedNews.title }}"><img
+                                src="{{ relatedNews.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_270_160') }}"
+                                height="160"
+                                width="270" alt="{{ relatedNews.title }}">
+                    </a>
+                </figure>
+                <h5><a href="{{ path('bidhee_frontend_news', {'id': relatedNews.id}) }}"
+                       title="{{ relatedNews.title }}">{{ relatedNews.title }}</a></h5>
+                {% else %}
+                <h5><a href="{{ path('bidhee_frontend_news', {'id': relatedNews.id}) }}"
+                       title="{{ relatedNews.title }}">{{ relatedNews.title }}</a></h5>
+                {#<div class="intro"> {{ relatedNews.intro_text|truncate(150) }}#}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endif %}

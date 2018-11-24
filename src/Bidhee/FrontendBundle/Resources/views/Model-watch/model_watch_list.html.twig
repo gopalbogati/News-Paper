@@ -1,0 +1,61 @@
+{% extends '@BidheeFrontend/layout.html.twig' %}
+
+{% block ogTags %}
+    <meta property="og:image" content="{{ ('/uploads/gallery/' ~ albums[0].images[0].path) }}"/>
+    <meta property="og:title" content="{{ albums[0].images[0].caption }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og.author" content=""/>
+    {# <meta property="og:url" content="{{ path('bidhee_frontend_album',{'id':albums[0].id}) }}"/>#}
+    <meta property="og:description" content="{{ albums[0].description }}"/>
+{% endblock %}
+{% block title %}
+    <title>
+        Janata Samachar Model Gallery - {{ albums[0].name }}
+    </title>
+{% endblock %}
+
+{% block content %}
+    {% include '@BidheeFrontend/News/add/add_below_header_menu.html.twig' %}
+    <section id="wrapper">
+        <div class="container">
+            <div class="col-12">
+                <!-- Main Content -->
+                <article class="full">
+                    <div class="models">
+                        <div class="title">मोडल वाच</div>
+                        <div class="info">
+                            {# <div class="date">{{ albums[0].createdOn.date|nepaliDate }}</div>#}
+                            <div class="share">
+                                <span class='st_facebook_hcount' displayText='Facebook'></span>
+                                <span class='st_twitter_hcount' displayText='Tweet'></span>
+                            </div>
+                        </div>
+
+                        <div class="listing">
+                            {% for album in albums %}
+                                <div class="box"><a
+                                            href="{{ path('bidhee_frontend_model_gallery_detail', {'id': album.id}) }}"
+                                            title="">
+                                        <figure><img
+                                                    src="{{ ('uploads/gallery/' ~ album.images[0].path ) | imagine_filter('bidhee_thumbnail_270_420') }}"
+                                                    height="420" width="270" alt=""></figure>
+                                        <h5>{{ album.name }}</h5>
+                                    </a></div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="pagenav">
+                        <!-- Pagination -->
+                        {{ knp_pagination_render(albumPaginate)|raw }}
+
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+

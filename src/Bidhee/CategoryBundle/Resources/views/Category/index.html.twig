@@ -1,0 +1,124 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="col-md-12 margin-bottom">
+        <a href="{{ url('bidhee_admin_category_create') }}" class="btn btn-default pull-right">
+            <i class="fa fa-plus"></i>
+            Add New Category
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12 margin-bottom " id="categoryFilterForm">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Filter</h4>
+            </div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal" method="get">
+                    <div class="form-group-sm col-md-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ app.request.query.get('name') }}">
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="col-md-3">
+                        <label for="">&nbsp;</label>
+                        <input type="submit" class="btn btn-primary" value="FILTER">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {% macro recursiveCategory(category, dash, class, count) %}
+        {% import _self as macros %}
+        <tr class="{{ class }}">
+            <td align="left">{{ count }}</td>
+            <td>{{ dash ~ ' ' ~ category.name }}</td>
+            <td>{{ category.alias }}</td>
+            <td>{{ category.description }}</td>
+            <td>{{ category.ordering }}</td>
+            <td>{{ category.parent }}</td>
+            <td>{{ category.children|length }}</td>
+            <td>
+                {{ status_info(
+                category.publish,
+                true,
+                "Bidhee\\CategoryBundle\\Entity\\Category",
+                category.id,
+                'publish'
+                )|raw }}
+            </td>
+            <td>
+                {{ status_info(
+                category.isTopMenuItem,
+                true,
+                "Bidhee\\CategoryBundle\\Entity\\Category",
+                category.id,
+                'isTopMenuItem'
+                )|raw }}
+            </td>
+            <td>
+                <a href="{{ url('bidhee_admin_category_update', {'id':category.id}) }}"
+                   class="icon"
+                   title="edit">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </td>
+        </tr>
+        {% if category.children|length %}
+            {% set dash = dash ~ ' --- ' %}
+            {% for child in category.children %}
+                {{ macros.recursiveCategory(child, dash, '', count ~ '.' ~ loop.index) }}
+            {% endfor %}
+        {% endif %}
+    {% endmacro %}
+
+
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            {% if categories|length %}
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Alias</th>
+                        <th>Description</th>
+                        <th>Order</th>
+                        <th>Parent</th>
+                        <th>Child Counts</th>
+                        <th>Published</th>
+                        <th>Top Menu Item</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% set counter = ((categories.currentPageNumber - 1 ) * categories.getItemNumberPerPage) + 1 %}
+                    {% for category in categories %}
+                        {{ _self.recursiveCategory(category, '', 'even', counter) }}
+                        {% set counter = counter + 1 %}
+                    {% endfor %}
+
+                </table>
+            {% else %}
+                {{ no_results('No categories added yet')|raw }}
+            {% endif %}
+
+            <div class="clearfix"></div>
+            <div class="col-md-12 text-right">
+                {{ knp_pagination_render(categories) }}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+{% endblock %}
+

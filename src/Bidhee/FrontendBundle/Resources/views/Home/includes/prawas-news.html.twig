@@ -1,0 +1,116 @@
+<section>
+    <div class="container">
+        <div class="col-9">
+            <div class="mod_pravas">
+                <div class="heading">
+                    <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':12}) }}" title="">प्रवास</a></span>
+                    <a href="{{ url('bidhee_frontend_news_by_category', {'id':12}) }}" class="more">थप प्रवास</a>
+                </div>
+                <div class="block">
+                    {% for news in prawashaNews|slice(0,1) %}
+                        <div class="colLeft">
+                            <h4><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                   title="{{ news.title }}">{{ news.title }}</a></h4>
+                            {% if news.featuredImage %}
+                            <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                        title="{{ news.title }}"><img
+                                            src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_470_240') }}"
+                                            height="240"
+                                            width="470"
+                                            alt=""></a></figure>
+                            {% endif %}
+                            <div class="intro"><div class="overflow">
+                                    {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="colRight">
+                        <ul>
+                            {% for news in prawashaNews|slice(1,2) %}
+                                <li>
+                                    <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="">{{ news.title }}
+                                        </a></h5>
+                                    <div class="tbl">
+                                        {% if news.featuredImage %}
+                                        <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                                   title="{{ news.title }}"><img
+                                                        src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_65') }}"
+                                                        alt="{{ news.title }}"></a></figure>
+                                        {% endif %}
+                                        {#<div class="intro">{{ news.introText|striptags|slice(0, 150)~'...' }}
+                                        </div>#}
+                                        <div class="intro"><div class="overflow">
+                                                {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|striptags|slice(0, 150)~'...' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            {% for news in prawashaNews|slice(2,1) %}
+                                <li>
+                                    <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="">{{ news.title }}</a></h5>
+                                    <div class="tbl">
+                                        <div class="intro"><div class="overflow">
+                                                {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|striptags|slice(0, 150)~'...' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            {% for news in prawashaNews|slice(3,2) %}
+                                <li><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="">{{ news.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="mod_international">
+                <div class="heading">
+                    <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':7}) }}"
+                             title="">कला/साहित्य</a></span>
+                    <a href="{{ url('bidhee_frontend_news_by_category', {'id':7}) }}" class="more">थप कला/साहित्य</a>
+                </div>
+                <ul>
+                    {% for news in sahityaNews|slice(0,1) %}
+                        <li>
+                            <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                   title="{{ news.title }}">{{ news.title }}</a></h5>
+                            <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}"><img
+                                            src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_270_150') }}"
+                                            alt="{{ news.title }}"></a></figure>
+                        </li>
+                    {% endfor %}
+                    {% for news in sahityaNews|slice(1,2) %}
+                        <li>
+                            <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                   title="{{ news.title }}">{{ news.title }}</a></h5>
+                            <div class="tbl">
+                                {% if news.featuredImage %}
+                                <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}"><img
+                                                src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_65') }}"
+
+                                                alt="{{ news.title }}"></a></figure>
+                                {% endif %}
+                              {#  <div class="intro">{{ news.introText|striptags|slice(0, 80)~'...' }}
+                                </div>#}
+                                <div class="intro"><div class="overflow">
+                                        {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|striptags|slice(0, 80)~'...' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

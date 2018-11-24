@@ -1,0 +1,14 @@
+services:
+    bidhee.ad.service:
+        class: Bidhee\AdBundle\Service\AdService
+        arguments: [ @doctrine.orm.entity_manager, @security.token_storage ]
+
+    bidhee.ad.type.service:
+        class: Bidhee\AdBundle\Service\AdTypeService
+        arguments: [ @doctrine.orm.entity_manager, @security.token_storage ]
+
+    bidhee.twig_extension.ad:
+        class: Bidhee\AdBundle\Extensions\Twig\AdExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }

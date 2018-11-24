@@ -1,0 +1,81 @@
+<footer>
+    <div class="container">
+        <div class="col-12">
+            <div class="links">
+                <h4>समाचार</h4>
+                <ul>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':2}) }}" title="">समाज</a>
+                    </li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':1}) }}"
+                           title="">राजनीति</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':21}) }}"
+                           title="">अपराध</a>
+                    </li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':4}) }}"
+                           title="">खेलकुद</a>
+                    </li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':19}) }}" title="">प्रवास</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':13}) }}" title="">अन्तर्राष्ट्रिय</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="links">
+                <h4>बिजनेस</h4>
+                <ul>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':23}) }}" title="">बजार</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':24}) }}" title="">पर्यटन</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':25}) }}" title="">रोजगार</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':26}) }}" title="">बैँक/वित्त</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':27}) }}" title="">अटो</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':28}) }}" title="">सूचना(प्रविधि)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="links">
+                <h4>मनोरञ्जन</h4>
+                <ul>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':29}) }}" title="">सिनेमा</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':30}) }}" title="">संगीत</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':3}) }}" title="">कला</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':31}) }}" title="">बलिउड/हलिउड</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':17}) }}" title="">भिडियो</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':18}) }}" title="">ग्यालरी</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h4>विविध</h4>
+                <ul>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':10}) }}" title="">विचार/ब्लग</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':7}) }}" title="">साहित्य</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':11}) }}" title="">अन्तर्वार्ता</a>
+                    </li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':32}) }}"
+                           title="">जीवनशैली/स्वास्थ्य</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':33}) }}" title="">रोचक</a></li>
+                    <li><a href="{{ url('bidhee_frontend_news_by_category', {'id':34}) }}" title="">राम्रो नेपाल</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="address">
+                <h4>Janata Samachar</h4>
+                <p>Phone: <a href="tel:+977-1-4107223">+977-1-4107223</a><br/>
+                    Email: <a href="mailto:news@janatanetwork.com">news@janatanetwork.com</a></p>
+                <ul class="social">
+                    <li><a href="{{ get_setting('facebook_page_link') }}" title="Facebook" target="_blank"><i
+                                    class="fa fa-facebook-square"></i></a></li>
+                    <li><a href="{{ get_setting('twitter_profile_link') }}" title="Twitter" target="_blank"><i
+                                    class="fa fa-twitter-square"></i></a></li>
+                    <li><a href="{{ get_setting('youtube_link') }}" title="Youtube" target="_blank"><i
+                                    class="fa fa-youtube-square"></i></a></li>
+                    {#  <li><a href="{{ get_setting('no_breaking') }}" title="Youtube" target="_blank"><i
+                                      class="fa fa-youtube-square"></i></a></li>#}
+                </ul>
+                <p>2016 &copy; <a target="_blank" href="http://janatanetwork.com/">Janata Network</a> Minbhawan Kathmandu Nepal
+                      <br/>
+                    All rights reserved.<br/>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+

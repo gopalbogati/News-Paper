@@ -1,0 +1,17 @@
+/vendor
+/app/logs
+/app/cache
+/app/config/parameters.yml
+/composer.lock
+/web/uploads
+/web/bundles/
+.idea/
+/bin/
+/app/config/parameters_live.yml
+/app/bootstrap.php.cache
+/app/phpunit.xml.dist
+/web/.htaccess_example
+/web/media/cache
+/html
+web/media/
+

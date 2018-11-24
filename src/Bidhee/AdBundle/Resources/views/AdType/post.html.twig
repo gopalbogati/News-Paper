@@ -1,0 +1,37 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    {{ form_row(form.name) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.width) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.height) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.publish) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-12">
+        <input type="submit" class="btn btn-primary btn-lg" value="SAVE">
+        <a href="{{ url('bidhee_admin_ad_type_list') }}" class="btn btn-lg btn-danger">CANCEL</a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <div class="col-md-12 margin-bottom">
+        <a href="{{ url('bidhee_admin_ad_type_create') }}" class="btn btn-default pull-right">
+            <i class="fa fa-plus"></i>
+            Add New Ad Type
+        </a>
+    </div>
+
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+                {% if adTypes|length %}
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Dimension (WxH)</th>
+                            <th>Publish</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for adType in adTypes %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ adType.name }}</td>
+                                <td>{{ adType.width }} X {{ adType.height }}</td>
+                                <td>
+                                    {{
+                                        status_info(
+                                            adType.publish,
+                                            true,
+                                            "Bidhee\\AdBundle\\Entity\\AdType",
+                                            adType.id,
+                                            'publish'
+                                        )|raw
+                                    }}
+                                </td>
+                                <td>
+                                    <a href="{{ url('bidhee_admin_ad_type_update', {'id':adType.id}) }}"
+                                       class="icon"
+                                       title="edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    {{ no_results('No Ad Types Found.')|raw }}
+                {% endif %}
+
+            <div class="clearfix">
+                <div class="col-md-12 text-right">
+                    {{ knp_pagination_render(adTypes) }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

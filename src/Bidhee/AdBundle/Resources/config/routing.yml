@@ -1,0 +1,31 @@
+# ====================================
+# Admin Ad Type Routes
+# ==================================
+
+bidhee_admin_ad_type_list:
+    path: /admin/ad-type/list
+    defaults: { _controller: BidheeAdBundle:AdType:index }
+
+bidhee_admin_ad_type_create:
+    path: /admin/ad-type/new
+    defaults: { _controller: BidheeAdBundle:AdType:create }
+
+bidhee_admin_ad_type_update:
+    path: /admin/ad-type/{id}/update
+    defaults: { _controller: BidheeAdBundle:AdType:create }
+
+# ====================================
+# Admin Ad Routes
+# ====================================
+
+bidhee_admin_ad_list:
+    path: /admin/ad/list
+    defaults: { _controller: BidheeAdBundle:Ad:index }
+
+bidhee_admin_ad_create:
+    path: /admin/ad/new
+    defaults: { _controller: BidheeAdBundle:Ad:create }
+
+bidhee_admin_ad_update:
+    path: /admin/ad/{id}/update
+    defaults: { _controller: BidheeAdBundle:Ad:create }

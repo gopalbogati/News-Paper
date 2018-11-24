@@ -1,0 +1,55 @@
+epaper:
+    resource: "@EpaperBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bidhee_feed:
+    resource: "@BidheeFeedBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bidhee_content:
+    resource: "@BidheeContentBundle/Resources/config/routing.yml"
+    prefix:   /%admin_dir_mask%
+
+bidhee_ad:
+    resource: "@BidheeAdBundle/Resources/config/routing.yml"
+    prefix:   /%admin_dir_mask%
+
+bidhee_news:
+    resource: "@BidheeNewsBundle/Resources/config/routing.yml"
+    prefix:   /%admin_dir_mask%
+
+bidhee_frontend:
+    resource: "@BidheeFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bidhee_foundation:
+    resource: "@BidheeFoundationBundle/Resources/config/routing.yml"
+
+bidhee_category:
+    resource: "@BidheeCategoryBundle/Resources/config/routing.yml"
+    prefix: /%admin_dir_mask%
+
+bidhee_admin:
+    resource: "@BidheeAdminBundle/Resources/config/routing.yml"
+    prefix:   /%admin_dir_mask%/admin
+
+bidhee_user:
+    resource: "@BidheeUserBundle/Resources/config/routing.yml"
+
+elfinder:
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+oneup_uploader:
+    resource: .
+    type: uploader
+
+settings:
+    resource: "@DmishhSettingsBundle/Resources/config/routing.yml"
+    prefix: /%admin_dir_mask%/admin/settings
+
+bidhee_gallery:
+    resource: "@BidheeGalleryBundle/Resources/config/routing.yml"
+    prefix:   /%admin_dir_mask%

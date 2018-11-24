@@ -1,0 +1,47 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="col-md-12">
+                    {{ form_row(form.title) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.sortOrder) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.description) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.showOnFooterMenu) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.publish) }}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+        <input type="submit" class="btn btn-primary btn-lg" value="SAVE">
+        <a href="{{ url('bidhee_admin_photo_feature_index') }}" class="btn btn-lg btn-danger">CANCEL</a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {{ form_widget(form, {'attr':{'class':'hidden' }}) }}
+
+    {{ form_end(form) }}
+{% endblock %}

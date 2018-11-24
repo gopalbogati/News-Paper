@@ -1,0 +1,4 @@
+services:
+    bidhee.pagination.service:
+        class: Bidhee\AdminBundle\Service\PaginationService
+        arguments: ["@service_container"]

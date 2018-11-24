@@ -1,0 +1,11 @@
+bidhee_admin_category_list:
+    path:     /admin/categories
+    defaults: { _controller: BidheeCategoryBundle:Category:index }
+
+bidhee_admin_category_create:
+    path:     /admin/category/new
+    defaults: { _controller: BidheeCategoryBundle:Category:create }
+
+bidhee_admin_category_update:
+    path:     /admin/category/{id}/update
+    defaults: { _controller: BidheeCategoryBundle:Category:create }

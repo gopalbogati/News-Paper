@@ -1,0 +1,63 @@
+bidhee_frontend_homepage:
+    path:     /
+    defaults: { _controller: "BidheeFrontendBundle:Home:index" }
+
+bidhee_frontend_news_by_category:
+    path:     category/{id}
+    defaults: { _controller: "BidheeFrontendBundle:NewsByCategory:index" }
+
+bidhee_frontend_news_page:
+    path:     news
+    defaults: { _controller: "BidheeFrontendBundle:News:news" }
+
+bidhee_frontend_news:
+    path:     news/{id}
+    defaults: { _controller: "BidheeFrontendBundle:News:index" }
+
+bidhee_frontend_archive:
+    path:     archive
+    defaults: { _controller: "BidheeFrontendBundle:News:archive" }
+
+bidhee_frontend_id_after_url:
+    path:     /{id}
+    defaults: { _controller: "BidheeFrontendBundle:Home:index" }
+    requirements:
+            id: \d+
+bidhee_frontend_recent_news:
+    path: recent-news
+    defaults: { _controller: "BidheeFrontendBundle:Page:recentNews" }
+
+bidhee_frontend_news_search:
+    path: search
+    defaults: { _controller: "BidheeFrontendBundle:News:searchNews" }
+
+bidhee_frontend_news_by_author:
+   path: news/author/{author_id}
+   defaults: { _controller: "BidheeFrontendBundle:News:newsByAuthor" }
+
+
+# Content
+bidhee_frontend_content_detail:
+   path: content/{slug}
+   defaults: { _controller: "BidheeFrontendBundle:News:detail" }
+
+# Content
+bidhee_frontend_gallery_list:
+   path: gallery
+   defaults: { _controller: "BidheeFrontendBundle:Gallery:index" }
+
+bidhee_frontend_gallery_detail:
+  path: gallery/{id}
+  defaults: { _controller: "BidheeFrontendBundle:Gallery:detail" }
+
+#model listing
+bidhee_frontend_model_gallery_list:
+  path: models-gallery
+  defaults: { _controller: "BidheeFrontendBundle:Gallery:modelListing" }
+
+#model gallery details
+bidhee_frontend_model_gallery_detail:
+  path: model-gallery/{id}
+  defaults: { _controller: "BidheeFrontendBundle:Gallery:modelDetail" }
+
+

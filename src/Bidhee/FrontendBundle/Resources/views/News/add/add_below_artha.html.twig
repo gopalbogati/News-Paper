@@ -1,0 +1,23 @@
+<section>
+    <div class="container">
+        <div class="col-12">
+            <div class="banner">
+                {% set abovesports = getAds('above-sports-menu',1) %}
+                {% if abovesports|length > 0 %}
+                    {% for ad in abovesports %}
+                        <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}">
+                        {% if ad.file is not null %}
+                            <img
+                                    src="{{ ad.file }}"
+                                    height="102" width="1170" alt=""/></a>
+                            </figure>
+                        {% elseif ad.script is not null %}
+                            {{ ad.script|raw }}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

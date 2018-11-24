@@ -1,0 +1,55 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Quick Links</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="well">
+                            <h4>
+                                <i class="fa fa-files-o" style="font-size: 19px"></i>
+                                <a style="padding-left: 10px" href="{{ path('bidhee_admin_news_create') }}">
+                                    Add News</a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="well">
+                            <h4>
+                                <i class="fa fa-files-o" style="font-size: 19px"></i>
+                                <a style="padding-left: 10px" href="{{ path('bidhee_admin_news_list') }}">
+                                    News List</a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="well">
+                            <h4>
+                                <i class="fa fa-files-o" style="font-size: 19px"></i>
+                                <a style="padding-left: 10px" href="{{ path('bidhee_admin_category_create') }}">
+                                    Create Category</a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="well">
+                            <h4>
+                                <i class="fa fa-files-o" style="font-size: 19px"></i>
+                                <a style="padding-left: 10px" href="{{ path('bidhee_admin_category_list') }}">
+                                    Category List</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}

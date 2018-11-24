@@ -1,0 +1,28 @@
+<div class="mod_international">
+    <div class="heading">
+        <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':33}) }}" title="">रोचक</a></span>
+        <a href="{{ url('bidhee_frontend_news_by_category', {'id':33}) }}" class="more">थप
+            रोचक</a>
+    </div>
+    <ul>
+        {% for news in rochak|slice(0,3) %}
+
+            <li>
+                <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                       title="{{ news.title }}">{{ news.title }}</a></h5>
+                <div class="tbl">
+                    {% if(news.featuredImage) %}
+                        <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                   title="{{ news.title }}"><img
+                                        src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_65') }}"
+                                        alt="{{ news.title }}"></a></figure>
+                    {% endif %}
+                    <div class="intro"><div class="overflow">
+                            {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(11) }}
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

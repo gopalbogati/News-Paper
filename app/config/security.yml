@@ -1,0 +1,41 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface:
+          algorithm: sha512
+          iterations: 5
+
+    role_hierarchy:
+        ROLE_CONSUMER: ROLE_USER
+        ROLE_AUTHOR: ROLE_USER
+        ROLE_EDITOR: [ ROLE_AUTHOR, ROLE_NEWS_MANAGER, ROLE_ADMIN]
+        ROLE_SYSTEM_ADMIN: [ ROLE_EDITOR, ROLE_USER_MANAGER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_SYSTEM_ADMIN]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                success_handler: bidhee_news.login_success_handler
+                login_path: /%admin_dir_mask%/login
+                check_path: fos_user_security_check
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+            logout:
+                path: /%admin_dir_mask%/logout
+            anonymous:    true
+
+    access_control:
+        - { path: ^/%admin_dir_mask%/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%admin_dir_mask%/, role: ROLE_ADMIN }
+        - { path: ^/%admin_dir_mask%/admin/, role: ROLE_ADMIN }
+        - { path: ^/resque, roles: ROLE_ADMIN }
+
+

@@ -1,0 +1,8 @@
+bidhee_news_feed:
+    path: /feeds
+    defaults: { _controller: BidheeFeedBundle:Feed:index }
+
+bidhee_news_instant_article_feed:
+    path: /feeds/instant-article
+    defaults: { _controller: BidheeFeedBundle:InstantArticleFeed:index }
+

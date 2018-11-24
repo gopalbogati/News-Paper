@@ -1,0 +1,62 @@
+<section>
+    <div class="container">
+        <div class="col-9">
+            <div class="banner">
+                {% set innerTop = getAds('above-health-section',5) %}
+                {% if innerTop|length > 0 %}
+                    {% for ad in innerTop %}
+                        <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}">
+                        {% if ad.file is not null %}
+                            <img src="{{ ad.file }}" alt=""/></a>
+                            </figure>
+                        {% elseif ad.script is not null %}
+                            {{ ad.script|raw }}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+            <div class="mod_health">
+                <div class="heading">
+                    <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':16}) }}"
+                             title="">स्वास्थ्य</a></span>
+                    <a href="{{ url('bidhee_frontend_news_by_category', {'id':16}) }}" class="more">थप स्वास्थ्य</a>
+                </div>
+                <div class="block">
+                    {% for news in healthNews|slice(0,3) %}
+                        <div class="box">
+                            {% if news.featuredImage %}
+                                <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}" title=""><img
+                                                src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_270_160') }}"
+                                                alt=""></a></figure>
+                            {% endif %}
+                            <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                   title="{{ news.title }}">{{ news.title }}</a></h5>
+                            <div class="intro"><div class="overflow">
+                                    {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(17) }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="bigyapan smgap">
+                {% set innerTop = getAds('right-health-section',10) %}
+                {% if innerTop|length > 0 %}
+                    {% for ad in innerTop %}
+                        <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}">
+                        {% if ad.file is not null %}
+                            <img src="{{ ad.file }}" alt=""></a></figure>
+                        {% elseif ad.script is not null %}
+                            {{ ad.script|raw }}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

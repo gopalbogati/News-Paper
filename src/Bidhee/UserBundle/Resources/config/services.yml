@@ -1,0 +1,22 @@
+services:
+    bidhee_news.login_success_handler:
+        class: Bidhee\UserBundle\Handler\LoginSuccessHandler
+        arguments: ['@service_container']
+
+    bidhee.user.service:
+        class: Bidhee\UserBundle\Service\UserService
+        arguments: ['@doctrine.orm.entity_manager', '@fos_user.user_manager']
+
+    bidhee.user.twig_extension:
+        class: Bidhee\UserBundle\Twig\Extension\UserExtension
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: twig.extension }
+
+    bidhee.author.service:
+        class: Bidhee\UserBundle\Service\AuthorService
+        arguments: ['@doctrine.orm.entity_manager']
+
+    bidhee.consumer.service:
+        class: Bidhee\UserBundle\Service\ConsumerService
+        arguments: ['@doctrine.orm.entity_manager']

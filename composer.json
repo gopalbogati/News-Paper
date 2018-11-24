@@ -1,0 +1,91 @@
+{
+    "name": "bidhee/nagarik-news",
+    "license": "proprietary",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "files": [
+            "app/Resources/Misc/helpers.php"
+        ],
+        "classmap": [
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
+    },
+    "require": {
+        "php": ">=5.5",
+        "symfony/symfony": "2.8.*",
+        "doctrine/orm": "^2.4.8",
+        "doctrine/doctrine-bundle": "~1.4",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~5.0",
+        "sensio/framework-extra-bundle": "^3.0.2",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "1.7.*@dev",
+        "gedmo/doctrine-extensions": "~2.4",
+        "stof/doctrine-extensions-bundle": "1.2.*@dev",
+        "jms/serializer-bundle": "^1.1",
+        "symfony/var-dumper": "~3.0",
+        "egeloen/ckeditor-bundle": "4.0.1",
+        "helios-ag/fm-elfinder-bundle": "~5",
+        "knplabs/knp-paginator-bundle": "~2.5",
+        "liip/imagine-bundle": "1.6.*",
+        "twig/twig": "1.30.0",
+        "twig/extensions": "^1.3",
+        "vich/uploader-bundle": "1.0.1",
+        "white-october/pagerfanta-bundle": "v1.0.6",
+        "oneup/uploader-bundle": "1.5.0",
+        "jms/di-extra-bundle": "1.7.0",
+        "dmishh/settings-bundle": "^1.0",
+        "nelmio/api-doc-bundle": "2.12.0",
+        "nesbot/carbon": "^1.21",
+        "pugx/multi-user-bundle": "3.0.*@dev",
+        "bhaktaraz/php-rss-generator": "dev-master",
+        "richsage/rms-push-notifications-bundle": "0.2.2",
+        "sensio/generator-bundle": "~3.0",
+        "pandeydip/asset-version-git": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@gitlab.com:pandeydip/asset-version.git"
+        }
+    ],
+    "require-dev": {
+        "symfony/phpunit-bridge": "~2.7"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin",
+        "component-dir": "web/assets"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
+    }
+}

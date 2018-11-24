@@ -1,0 +1,56 @@
+services:
+    bidhee.twig_extension.nepali_date:
+        class: Bidhee\FrontendBundle\Extensions\Twig\NepaliDateExtension
+        tags:
+          - { name: twig.extension }
+
+    bidhee.twig_extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+          - { name: twig.extension }
+
+    bidhee.twig_extension.increment_view_count:
+            class: Bidhee\FrontendBundle\Extensions\Twig\NewsViewsCounterExtension
+            arguments: ['@service_container']
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.top_menu_items:
+            class: Bidhee\FrontendBundle\Extensions\Twig\MenuItemExtension
+            arguments: ['@service_container']
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.imagine_base_url:
+            class: Bidhee\FrontendBundle\Extensions\Twig\LlipImagineImageExtension
+            arguments: ['@service_container']
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.recommended_trending_news:
+            class: Bidhee\FrontendBundle\Extensions\Twig\RecommendedTrendingNewsExtension
+            arguments: ['@service_container']
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.related_news:
+            class: Bidhee\FrontendBundle\Extensions\Twig\RelatedNewsExtension
+            arguments: ['@service_container']
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.category_main_featured_news:
+            class: Bidhee\FrontendBundle\Extensions\Twig\CategoryFeaturedMainNewsExtension
+            arguments: ['@service_container']
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.str_replace:
+            class: Bidhee\FrontendBundle\Extensions\Twig\SearchReplaceExtension
+            tags:
+              - { name: twig.extension }
+
+    bidhee.twig_extension.string_helper:
+            class: Bidhee\FrontendBundle\Extensions\Twig\StringHelperExtension
+            tags:
+              - { name: twig.extension }

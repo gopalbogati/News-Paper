@@ -1,0 +1,43 @@
+{% extends 'BidheeFrontendBundle::layout.html.twig' %}
+
+{% block ogTags %}
+    <meta property="og:image" content="{{ ('/uploads/gallery/' ~ images[0].path) }}"/>
+    <meta property="og:title" content="{{ images[0].caption }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og.author" content=""/>
+    <meta property="og:url" content="{{ path('bidhee_frontend_album',{'id':albums[0].id}) }}"/>
+    <meta property="og:description" content="{{ images[0].caption }}"/>
+{% endblock %}
+
+
+{% block title %}
+    <title>
+        Janata Samachar Model Gallery - {{ albums[0].name }}
+    </title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">मोडलहरु</h1>
+        </div>
+
+        {% for album in albums %}
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="{{ path('bidhee_frontend_gallery_detail', {'id': album.id}) }}">
+                    <img class="img-responsive"
+                         src="{{ ('uploads/gallery/' ~ album.images[0].path ) | imagine_filter('bidhee_thumbnail_458_364') }}"
+                         style="width:400px;height:300px;" alt="">
+                </a>
+
+                <p>{{ album.images[0].caption }}</p>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
+
+

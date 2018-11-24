@@ -1,0 +1,10 @@
+services:
+    bidhee.category.service:
+        class: Bidhee\CategoryBundle\Service\CategoryService
+        arguments: [@doctrine.orm.entity_manager]
+
+    bidhee.category.twig_extension:
+        class: Bidhee\CategoryBundle\Twig\Extension\CategoryExtension
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: twig.extension }

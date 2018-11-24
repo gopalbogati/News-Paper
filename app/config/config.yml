@@ -1,0 +1,526 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: settings.yml }
+    - { resource: "@BidheeGalleryBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    translator:      ~
+
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        save_path: "%kernel.root_dir%/sessions/"
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+    templating:
+        engines: ['twig']
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form:
+        resources: ['BidheeAdminBundle:Form:admin_form_layout.html.twig']
+    form_themes:
+        # other form themes
+        - 'BidheeFoundationBundle:vich:fields.html.twig'
+#    globals:
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+# Doctrine Migrations
+#doctrine_migrations:
+#    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+#    namespace: Application\Migrations
+#    table_name: migration_versions
+#    name: Application Migrations
+
+#Doctrine Extensions
+stof_doctrine_extensions:
+    orm:
+        # Prototype
+        default:
+            translatable:         false
+            timestampable:        true
+            blameable:            false
+            sluggable:            true
+            tree:                 false
+            loggable:             false
+            sortable:             true
+            softdeleteable:       true
+            uploadable:           false
+    class:
+        translatable:         Gedmo\Translatable\TranslatableListener
+        timestampable:        Gedmo\Timestampable\TimestampableListener
+        blameable:            Gedmo\Blameable\BlameableListener
+        sluggable:            Gedmo\Sluggable\SluggableListener
+        tree:                 Gedmo\Tree\TreeListener
+        loggable:             Gedmo\Loggable\LoggableListener
+        sortable:             Gedmo\Sortable\SortableListener
+        softdeleteable:       Gedmo\SoftDeleteable\SoftDeleteableListener
+        uploadable:           Gedmo\Uploadable\UploadableListener
+        reference_integrity:  Gedmo\ReferenceIntegrity\ReferenceIntegrityListener
+    uploadable:
+        default_file_path:    %kernel.root_dir%/uploads
+        mime_type_guesser_class:  Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+        default_file_info_class:  Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+        validate_writable_directory:  true
+    default_locale:       en
+    translation_fallback:  false
+    persist_default_translation:  false
+    skip_translation_on_load:  false
+
+#FOS User bundle configurations
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Bidhee\UserBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
+    from_email:
+        address: info@janatanetwork.com
+        sender_name: Janata Samachar
+
+
+pugx_multi_user:
+  users:
+      admin:
+          entity:
+              class: Bidhee\UserBundle\Entity\User
+
+# IVORY CKEDITOR
+ivory_ck_editor:
+    plugins:
+        widget:
+            path: "/bundles/bidheeadmin/ckeditor_plugins/widget/"
+            filename: "plugin.js"
+        lineutils:
+            path: "/bundles/bidheeadmin/ckeditor_plugins/lineutils/"
+            filename: "plugin.js"
+        wordcount:
+            path: "/bundles/bidheeadmin/ckeditor_plugins/wordcount/"
+            filename: "plugin.js"
+        oembed:
+            path: "/bundles/bidheeadmin/ckeditor_plugins/oembed/"
+            filename: "plugin.js"
+    configs:
+        my_config:
+            height: 600px
+            toolbar: "news_toolbar"
+            uiColor: "#EFEFEF"
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters:
+                instance: default
+            extraPlugins: "oembed"
+        news_highlight:
+            height: 430px
+            toolbar: "news_toolbar"
+            uiColor: "#EFEFEF"
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters:
+                instance: default
+            extraPlugins: "oembed"
+    toolbars:
+        configs:
+            news_toolbar: ["@document", "@clipboard", "@editing", "@basicStyles", "@justify", "@paragraph","@links","@insert", "@styles","@tools"]
+        items:
+            document: [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ]
+            clipboard: [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ]
+            editing: [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ]
+            basicStyles: [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]
+            paragraph: [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv' ]
+            justify: ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl']
+            links: [ 'Link','Unlink','Anchor' ]
+            insert: [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe','oembed' ]
+            styles: [ 'Styles','Format','Font','FontSize','TextColor','BGColor' ]
+            tools: [ 'Maximize', 'ShowBlocks' ]
+
+
+fm_elfinder:
+    instances:
+        default:
+            relative_path: false
+            locale: %locale%
+            editor: ckeditor
+            include_assets: true
+            connector:
+                roots:
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads/media
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg','application/pdf']
+                        upload_deny: ['all']
+                        upload_max_size: 10M
+        form:
+            relative_path: false
+            locale: %locale%
+            editor: form
+            fullscreen: true
+            include_assets: true
+            connector:
+                roots:
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads/media
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif','application/pdf', 'application/msword', 'image/pjpeg', 'application/excel']
+                        upload_deny: ['all']
+                        upload_max_size: 10M
+
+knp_paginator:
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+    filter_sets:
+        cache: ~
+        watermark_image:
+            filters:
+                watermark:
+                    image: ../src/Bidhee/FoundationBundle/Resources/public/images/watermark_image.jpg
+                    size: 0.5
+                    position: center
+
+        uploader_thumbnail:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 120]}
+
+        bidhee_thumbnail_80_70:
+            quality: 100
+            filters:
+                thumbnail: { size: [80, 100]}
+
+        bidhee_thumbnail_100_100:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 100]}
+
+        bidhee_thumbnail_174_109:
+            quality: 100
+            filters:
+                thumbnail: { size: [174,109]}
+
+        bidhee_thumbnail_165_119:
+            quality: 100
+            filters:
+                thumbnail: { size: [165,119]}
+
+        bidhee_thumbnail_103_74:
+            quality: 100
+            filters:
+                thumbnail: { size: [103,74]}
+
+        bidhee_thumbnail_197_136:
+            quality: 100
+            filters:
+                thumbnail: { size: [197,136]}
+
+        bidhee_thumbnail_226_106:
+            quality: 100
+            filters:
+                thumbnail: { size: [226,106]}
+
+        bidhee_thumbnail_247_149:
+            quality: 100
+            filters:
+                thumbnail: { size: [247,149]}
+
+        bidhee_thumbnail_345_207:
+            quality: 100
+            filters:
+                thumbnail: { size: [345,207]}
+
+        bidhee_thumbnail_419_225:
+            quality: 100
+            filters:
+                thumbnail: { size: [419,225]}
+
+        bidhee_thumbnail_270_160:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,160]}
+
+        bidhee_thumbnail_480_290:
+            quality: 100
+            filters:
+                thumbnail: { size: [480,290]}
+
+        bidhee_thumbnail_100_65:
+            quality: 100
+            filters:
+                thumbnail: { size: [100,65]}
+
+        bidhee_thumbnail_170_115:
+            quality: 100
+            filters:
+                thumbnail: { size: [170,115]}
+
+        bidhee_thumbnail_60_60:
+            quality: 100
+            filters:
+                thumbnail: { size: [60,60]}
+
+        bidhee_thumbnail_270_180:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,180]}
+
+        bidhee_thumbnail_110_170:
+            quality: 100
+            filters:
+                thumbnail: { size: [110,170]}
+
+        bidhee_thumbnail_270_150:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,150]}
+
+        bidhee_thumbnail_270_175:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,175]}
+
+        bidhee_thumbnail_100_65:
+            quality: 100
+            filters:
+                thumbnail: { size: [100,65]}
+
+        bidhee_thumbnail_370_205:
+            quality: 100
+            filters:
+                thumbnail: { size: [370,205]}
+
+        bidhee_thumbnail_570_270:
+            quality: 100
+            filters:
+                thumbnail: { size: [570,270]}
+
+        bidhee_thumbnail_270_115:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,115]}
+
+        bidhee_thumbnail_470_240:
+            quality: 100
+            filters:
+                thumbnail: { size: [470,240]}
+
+        bidhee_thumbnail_100_160:
+            quality: 100
+            filters:
+                thumbnail: { size: [160,100]}
+
+        bidhee_thumbnail_370_210:
+            quality: 100
+            filters:
+                thumbnail: { size: [370,210]}
+
+
+        bidhee_thumbnail_270_420:
+            quality: 100
+            filters:
+                thumbnail: { size: [420,270]}
+
+        bidhee_thumbnail_580_420:
+            quality: 100
+            filters:
+                thumbnail: { size: [580,420]}
+
+        bidhee_thumbnail_270_200:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,200]}
+
+        bidhee_thumbnail_100_65:
+            quality: 100
+            filters:
+                thumbnail: { size: [65,100]}
+
+        bidhee_thumbnail_870_500:
+            quality: 100
+            filters:
+                thumbnail: { size: [870,500]}
+
+        bidhee_thumbnail_250_150:
+            quality: 100
+            filters:
+                thumbnail: { size: [250,150]}
+
+        bidhee_thumbnail_65_100:
+            quality: 100
+            filters:
+                thumbnail: { size: [65,100]}
+        bidhee_thumbnail_210_370:
+            quality: 100
+            filters:
+                thumbnail: { size: [210,370]}
+        bidhee_thumbnail_150_250:
+            quality: 100
+            filters:
+                thumbnail: { size: [150,250]}
+        bidhee_thumbnail_500_870:
+            quality: 100
+            filters:
+                thumbnail: { size: [500,870]}
+
+        bidhee_thumbnail_370_210:
+            quality: 100
+            filters:
+                thumbnail: { size: [370,210]}
+
+        bidhee_thumbnail_1090_416:
+            quality: 100
+            filters:
+                thumbnail: { size: [1090,416]}
+
+
+        bidhee_thumbnail_1090_396:
+            quality: 100
+            filters:
+                thumbnail: { size: [1090,396]}
+
+        bidhee_thumbnail_170_110:
+            quality: 100
+            filters:
+                thumbnail: { size: [170,110]}
+
+        bidhee_thumbnail_270_420:
+            quality: 100
+            filters:
+                thumbnail: { size: [270,420]}
+
+        bidhee_thumbnail_379_276:
+            quality: 100
+            filters:
+                thumbnail: { size: [379,276]}
+
+        bidhee_thumbnail_480_290:
+            quality: 100
+            filters:
+                thumbnail: { size: [480,290]}
+
+        bidhee_thumbnail_164_103:
+            quality: 100
+            filters:
+                thumbnail: { size: [164,103]}
+
+        bidhee_thumbnail_164_103:
+            quality: 100
+            filters:
+                thumbnail: { size: [164,103]}
+
+        bidhee_thumbnail_310_210:
+            quality: 100
+            filters:
+                thumbnail: { size: [370,210]}
+
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        photo_feature_image:
+            uri_prefix:         /uploads/photo-feature
+            upload_destination: %kernel.root_dir%/../web/uploads/photo-feature
+
+        author_image:
+            uri_prefix:         /uploads/author
+            upload_destination: %kernel.root_dir%/../web/uploads/author
+
+        cover_image:
+            uri_prefix:         /uploads/cover-image
+            upload_destination: %kernel.root_dir%/../web/uploads/cover-image
+
+        epaper_file:
+            uri_prefix:         /uploads/epaper
+            upload_destination: %kernel.root_dir%/../web/uploads/epaper
+
+oneup_uploader:
+    mappings:
+        news_images:
+            frontend: dropzone
+
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [ BidheeNewsBundle ]
+        directories: ["%kernel.root_dir%/../src"]
+twig:
+    date:
+        # ...
+        timezone: Asia/Kathmandu
+# Push notifications
+rms_push_notifications:
+#  android:
+#      timeout: 5 # Seconds to wait for connection timeout, default is 5
+#      gcm:
+#          api_key: <string_android_gcm_api_key> # This is titled "Server Key" when creating it
+#          use_multi_curl: <boolean_android_gcm_use_multi_curl> # default is true
+#          dry_run: <bool_use_gcm_dry_run>
+#  ios:
+#      timeout: 60 # Seconds to wait for connection timeout, default is 60
+#      sandbox: <bool_use_apns_sandbox>
+#      pem: <path_apns_certificate> # can be absolute or relative path (from app directory)
+#      passphrase: <string_apns_certificate_passphrase>
+
+dmishh_settings:
+    security:
+         manage_global_settings_role: ROLE_USER
+         users_can_manage_own_settings: true

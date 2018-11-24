@@ -1,0 +1,165 @@
+{% extends 'BidheeFrontendBundle::layout.html.twig' %}
+
+    {% block title %}
+        <title>Janata Samachar - {{ news.title }}</title>
+    {% endblock %}
+
+    {% block ogTags %}
+        <meta property="og:site_name" content="Janata News"/>
+        {% if news.featuredImage is not null %}
+            <meta property="og:image" content="{{ news.featuredImage }}"/>
+        {% else %}
+            <meta property="og:image"
+                  content="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/bidheefrontend/images/style/janatasamachar-logo.png') }}"/>
+        {% endif %}
+        <meta property="og:title" content="{{ news.title }}"/>
+        <meta property="og:type" content="article"/>
+        {% if news.author is not null and news.author.name is not null %}
+            <meta property="og.author" content="{{ news.author.name }}"/>
+            <meta name="author" content="{{ news.author.name }}">
+        {% endif %}
+        <meta property="og:url" content="{{ url('bidhee_frontend_news', {'id':news.id}) }}"/>
+        <meta property="og:description" content="{{ news.introText }}"/>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="{{ news.title }}"/>
+        <meta name="twitter:description" content="{{ news.introText }}"/>
+        {% if news.featuredImage is not null %}
+            <meta property="twitter:image" content="{{ news.featuredImage }}"/>
+        {% else %}
+            <meta property="twitter:image"
+                  content="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/bidheefrontend/images/style/janatasamachar-logo.png') }}"/>
+        {% endif %}
+    {% endblock %}
+
+
+    {% block content %}
+        <section>
+            <div class="container">
+                <div class="col-12">
+                    <div class="banner">
+                        {% set innerTop = getAds('top-detail-page',1) %}
+                        {% if innerTop|length > 0 %}
+                            {% for ad in innerTop %}
+                                <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}">
+                                {% if ad.file is not null %}
+                                    <img src="{{ ad.file }}" height="120" width="1140" alt=""></a></figure>
+                                {% elseif ad.script is not null %}
+                                    {{ ad.script|raw }}
+                                {% endif %}
+                            {% endfor %}
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% include '@BidheeFrontend/Add/add_inner_top.html.twig' %}
+        <section id="wrapper">
+            <div class="container">
+                <div class="col-12">
+                    {#<div class="sharethis-inline-share-buttons"></div>#}
+                    <!-- Main Content -->
+                    <article>
+                        <div class="detail">
+                            <div class="title">
+                                {{ news.title }}
+                            </div>
+                            <div class="info">
+                                {% if news.authorcheck == true %}{% if news.author is not null%}
+                                    <div class="author">{{news.author.name}},</div>{% endif %}{% endif %}
+                                <div class="date">{{ news.publishOn|nepaliDate }}</div>
+                             {#   <div class="intro"><div class="overflow">
+
+                                        {% if news.authorcheck == true %}{% if news.authorname is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(24) }}
+                                    </div>
+                                </div>#}
+
+                                {#<div class="author">{% if news.author is not null and news.author.name is not null %}{{ news.author.name }}{% endif %}</div>#}
+                                {#<div class="share">#}
+                                    {#<span class='st_facebook_hcount' displayText='Facebook'></span>#}
+                                    {#<span class='st_twitter_hcount' displayText='Tweet'></span>#}
+                                {#</div>#}
+                            </div>
+                            <div class="share">
+                                <div class="sharethis-inline-share-buttons"></div>
+                            </div>
+                            {% if news.featuredImage %}
+                                <figure style="width: 100%; height: auto;">
+                                    <img src="{{ news.featuredImage }}" alt="{{ news.title }}">
+                                </figure>
+                            {% endif %}
+
+                            {{ news.content|raw }}
+                            {% if news.videoLink is not null %}
+                                <div class="videoWrapper">
+                                    <iframe src='http://www.youtube.com/embed/{{ news.videoLink }}'
+                                            frameborder='0'
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                            {% endif %}
+                            {#<div class="update-date"#}
+                                 {#style="font-style: italic;">{{ news.publishOn|publishedOnInNepali }}</div>#}
+                            {#<div>{{ news.review.viewsCount  }} पटक पढिएको</div>#}
+                        </div>
+                            <div class="detailfooter">
+                                <div class="update">{{ news.publishOn|publishedOnInNepali }}</div>
+                                <div class="count">{{ news.review.viewsCount  }} पटक पढिएको</div>
+                                <div class="like"><div class="fb-like" data-href="{{ url('bidhee_frontend_news', {'id':news.id}) }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div></div>
+                                {#<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/janatasamachar" data-width="80px" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>#}
+                            </div>
+                            <ul class="breadcrumb">
+                                {#{{ dump(news.categories[0].name) }}#}
+                                {#{% set menuItems = getMenuItems(categoryId+0) %}#}
+                                <li><a href="{{ path('bidhee_frontend_homepage') }}" title="">जनता समाचार</a></li>
+                                <li><a href="{{ url('bidhee_frontend_news_by_category', {'id': news.categories[0].id})}}" title="">{{news.categories[0].name }} </a></li>
+                                <li><a href="{{ url('bidhee_frontend_news', {'id':news.id}) }}" title=" {{ news.title }}">{{ news.title }}</a></li>
+                            </ul>
+                        <div class="comments">
+                            <h4 class="title"><span>प्रतिक्रिया दिनुहोस</span></h4>
+                            <div id="fb-root"></div>
+                            <script>(function (d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (d.getElementById(id)) return;
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-comments"
+                                 data-href="{{ url('bidhee_frontend_news', {'id':news.id}) }}" data-width="750"
+                                 data-numposts="15">
+                            </div>
+                        </div>
+                        {% include '@BidheeFrontend/News/partial/related.html.twig' %}
+
+                        {#{% include '@BidheeFrontend/News/partial/sambandhit.html.twig' %}#}
+
+                        {% include '@BidheeFrontend/News/partial/lokpriya.html.twig' %}
+
+                        {{ incrementNewsHitCounter(news) }}
+
+
+                    </article>
+
+                    <!-- Sidebar -->
+                    <aside>
+                        {% include '@BidheeFrontend/Add/add_inner_top_right.html.twig' %}
+
+                        {% include '@BidheeFrontend/News/shared/inner_trending_taja.html.twig' %}
+
+                        {% include '@BidheeFrontend/Add/add_inner_before_model_watch.html.twig' %}
+
+                        {# {% include '@BidheeFrontend/Model-watch/model_watch.html.twig' %}#}
+
+                        {% include '@BidheeFrontend/Add/add_inner_after_model_watch.html.twig' %}
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+    {% endblock %}
+
+
+

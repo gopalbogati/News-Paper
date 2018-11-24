@@ -1,0 +1,4 @@
+services:
+    bidhee.news.service:
+        class: Bidhee\NewsBundle\Service\NewsService
+        arguments: [ @doctrine.orm.entity_manager, @security.token_storage ]

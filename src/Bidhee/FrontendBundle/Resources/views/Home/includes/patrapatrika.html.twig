@@ -1,0 +1,57 @@
+{% set currentTime = "now"|date("Hi") %}
+{% if(currentTime <1200) %}
+    <section>
+        <div class="container12">
+            <div class="column12">
+                <div class="mod_newspaper">
+
+                    <div class="title">
+                        <span>
+                            <a href="{{ url('bidhee_frontend_news_by_category', {'id':16}) }}" title="">आजको पत्रपत्रिकाबाट</a>
+                        </span>
+                    </div>
+
+                    <div class="block">
+                        <div class="colLeft">
+                            <ul>
+                                {% for news in patrapatrikaNews|slice(0,5) %}
+                                    <li>
+                                        <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}">{{ news.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="colMid">
+                            {% for news in patrapatrikaImportantNews %}
+                                {% if news.isImportantNews==1 %}
+                                    <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}">
+                                        {% if news.featuredImage %}
+                                            <figure>
+                                                <img src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_470_222') }}"
+                                                     alt="{{ news.title }}">
+                                            </figure>
+                                        {% endif %}
+                                        <h4>{{ news.title }}</h4>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="colRight">
+                            <ul>
+                                {% for news in patrapatrikaNews|slice(5,5) %}
+                                    <li>
+                                        <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}" title="{{ news.title }}">{{ news.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+

@@ -1,0 +1,150 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Author Information</h4>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.username) }}
+                    {{ form_widget(form.username) }}
+                    {{ form_errors(form.username) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.bio) }}
+                    {{ form_widget(form.bio, {'attr': {'rows':3}}) }}
+                    {{ form_errors(form.bio) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.personalDomain) }}
+                    {{ form_widget(form.personalDomain) }}
+                    {{ form_errors(form.personalDomain) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.facebookProfile) }}
+                    {{ form_widget(form.facebookProfile) }}
+                    {{ form_errors(form.facebookProfile) }}
+                </div>
+
+
+                <div class="form-group">
+                    {{ form_label(form.twitterProfile) }}
+                    {{ form_widget(form.twitterProfile) }}
+                    {{ form_errors(form.twitterProfile) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.googlePlusProfile) }}
+                    {{ form_widget(form.googlePlusProfile) }}
+                    {{ form_errors(form.googlePlusProfile) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.linkedInProfile) }}
+                    {{ form_widget(form.linkedInProfile) }}
+                    {{ form_errors(form.linkedInProfile) }}
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Contact Information</h4>
+            </div>
+            <div class="panel-body">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.phone1) }}
+                        {{ form_widget(form.phone1) }}
+                        {{ form_errors(form.phone1) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.phone2) }}
+                        {{ form_widget(form.phone2) }}
+                        {{ form_errors(form.phone2) }}
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_label(form.address1) }}
+                        {{ form_widget(form.address1) }}
+                        {{ form_errors(form.address1) }}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_label(form.address2) }}
+                        {{ form_widget(form.address2) }}
+                        {{ form_errors(form.address2) }}
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Image</h4>
+            </div>
+            <div class="panel-body">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_label(form.imageFile) }}
+                        {{ form_widget(form.imageFile) }}
+                        {{ form_errors(form.imageFile) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+        <input type="submit" class="btn btn-primary" value="SAVE">
+        <a href="{{ url('bidhee_admin_users_list') }}" class="btn btn-danger">CANCEL</a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {{ form_end(form) }}
+{% endblock %}

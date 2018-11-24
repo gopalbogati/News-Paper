@@ -1,0 +1,91 @@
+{% extends "BidheeAdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+    {#<div class="col-md-12 margin">#}
+    {#<a href="{{ path('yarsha_admin_gallery_add') }}" class="btn btn-primary" >Add New gallery</a>#}
+    {#</div>#}
+
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% if albums|length %}
+
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Created</th>
+                            <th>Gallery</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for album in albums %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>
+                                    {{ album.name }}
+                                </td>
+                                <td>
+                                    {{ album.createdOn|date('Y-m-d') }}
+                                </td>
+                                <td>
+                                    <a href="{{ url('bidhee_admin_gallery_image_list', {'id':album.id}) }}"
+                                       title="{{ album.description }}">
+                                        <button class="btn btn-xs btn-warning"><i class="fa fa-file-image-o">
+                                                Gallery</i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ url('bidhee_admin_gallery_edit', {'id':album.id}) }}">
+                                        <i class="fa fa-edit fa-lg text-success"></i>&nbsp;
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ url('bidhee_admin_gallery_delete', {'id':album.id}) }}"
+                                       onclick="return confirm('Are you sure?')">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;
+                                    </a>
+                                </td>
+
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    {{ no_results('No News Found.')|raw }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title">Create Album</h4></div>
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'class':'validate' }}) }}
+
+                <div class="form-group col-md-12">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+
+                <div class="form-group col-md-12">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+
+                <div class="clear"></div>
+
+                <div class="form-group col-md-12 margin">
+                    {{ form_widget(form.save) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        {#<a href="{{ path('bidhee_admin_gallery_image_add', {'id' : gallery.id}) }}" class="btn btn-primary" >Add New Image</a>#}
+    </div>
+
+
+{% endblock %}

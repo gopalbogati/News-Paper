@@ -1,0 +1,20 @@
+<div class="add-wrapper">
+    {% set innerBottomRight = getAds('inner-bottom-right',20) %}
+    {% if innerBottomRight|length > 0 %}
+
+        {% for ad in innerBottomRight %}
+            <div class="add-container">
+                <a href="{{ ad.adLink }}" title="{{ ad.adTitle }}" target="_blank">
+                    {% if ad.file is not null %}
+                        <img src="{{ ad.file }}" alt="{{ ad.adTitle }}" class="img-responsive">
+                    {% elseif ad.script is not null %}
+                        {{ ad.script|raw }}
+                    {% endif %}
+                </a>
+
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+</div>

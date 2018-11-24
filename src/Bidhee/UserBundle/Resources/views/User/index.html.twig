@@ -1,0 +1,58 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+
+{% block content %}
+
+    <div class="col-md-12 margin-bottom">
+        <a href="{{ url('bidhee_admin_user_create') }}" class="btn btn-default pull-right">
+            <i class="fa fa-plus"></i>
+            Add New User
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            {% if users|length %}
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Group</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user_role(user.roles) }}</td>
+                        <td>
+                            {% if is_granted('ROLE_USER_MANAGER') %}
+                                <a href="{{ url('bidhee_admin_user_update', {'id':user.id}) }}" title="edit">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+
+                                {% if app.user.hasRole('ROLE_SUPER_ADMIN') or user.hasRole('ROLE_SUPER_ADMIN') != true %}
+                                    <a href="{{ url('bidhee_admin_user_change_password', {'id':user.id}) }}" title="change password">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                {{ no_results('No users to list.')|raw }}
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock content %}

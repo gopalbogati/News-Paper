@@ -1,0 +1,8 @@
+services:
+  bidhee.feed.service:
+      class: Bidhee\FeedBundle\Service\FeedService
+      arguments: ["@service_container", "@doctrine.orm.entity_manager"]
+
+  bidhee.instant_article_feed.service:
+        class: Bidhee\FeedBundle\Service\InstantArticleFeedService
+        arguments: ["@service_container", "@doctrine.orm.entity_manager"]

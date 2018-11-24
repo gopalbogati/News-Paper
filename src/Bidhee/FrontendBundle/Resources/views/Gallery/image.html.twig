@@ -1,0 +1,85 @@
+{% extends 'BidheeFrontendBundle::layout.html.twig' %}
+
+{% block ogTags %}
+    <meta property="og:image" content="{{ ('/uploads/gallery/' ~ images[0].path) }}"/>
+    <meta property="og:title" content="{{ images[0].caption }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og.author" content=""/>
+    <meta property="og:url" content="{{ path('bidhee_frontend_album',{'id':albums[0].id}) }}"/>
+    <meta property="og:description" content="{{ images[0].caption }}"/>
+{% endblock %}
+
+
+{% block styles %}
+
+    <!-- Magnific Popup -->
+    <link href="{{ asset('bundles/bidheefrontend/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block title %}
+    <title>
+        Janata Samachar Model Gallery - {{ images[0].album.name }}
+    </title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">मोडलहरु</h1> <a href="{{ path('bidhee_frontend_gallery_list') }}"><span
+                        class="pull-right btn btn-info">अन्य मोडलहरु</span></a>
+        </div>
+
+        {% for image in images %}
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb parent-container">
+                <a class="thumbnail" href="{{ asset('uploads/gallery/') }}{{ image.path }}">
+                    <img class="img-responsive"
+                         src="{{ ('uploads/gallery/' ~ image.path) | imagine_filter('bidhee_thumbnail_458_364') }}"
+                         style="width:400px;height:300px;" alt="{{ image.caption }}">
+                </a>
+
+                <p>{{ image.caption }}</p>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+
+    <script type="text/javascript"
+            src="{{ asset('bundles/bidheefrontend/magnific-popup/magnific-popup.min.js') }}"></script>
+
+    <script type="text/javascript">
+
+        $('.parent-container').magnificPopup({
+            delegate: 'a', // child items selector, by clicking on it popup will open
+            type: 'image',
+            gallery: {
+                enabled: true
+            },
+            mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+            zoom: {
+                enabled: true, // By default it's false, so don't forget to enable it
+
+                duration: 300, // duration of the effect, in milliseconds
+                easing: 'ease-in-out', // CSS transition easing function
+
+                // The "opener" function should return the element from which popup will be zoomed in
+                // and to which popup will be scaled down
+                // By defailt it looks for an image tag:
+                opener: function (openerElement) {
+                    // openerElement is the element on which popup was initialized, in this case its <a> tag
+                    // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                    return openerElement.is('img') ? openerElement : openerElement.find('img');
+                }
+            }
+            // other options
+        });
+    </script>
+
+{% endblock %}

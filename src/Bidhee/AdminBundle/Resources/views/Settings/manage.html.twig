@@ -1,0 +1,18 @@
+{% extends '@BidheeAdmin/Settings/layout.html.twig' %}
+
+{% block settings_form %}
+    <div class="panel-body">
+        <div class="col-md-12">
+            <h3>{% trans from 'settings' %}settings{% endtrans %}</h3>
+
+            <form method="post" id="settings-form" {{ form_enctype(settings_form) }} role="form">
+
+                {{ form_widget(settings_form) }}
+
+                <br/>
+
+                <input type="submit" class="btn btn-primary" value="{% trans from 'settings' %}save{% endtrans %}"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

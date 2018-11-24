@@ -1,0 +1,19 @@
+{% set currentTime = "now"|date("Hi", "Asia/Kathmandu") %}
+<div class="col-3">
+    <div class="mod_international">
+        <div class="heading">
+                <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':38}) }}"
+                         title="">आजको पत्रपत्रिकाबाट</a></span>
+        </div>
+
+        {% for news in patrapatrikaNews|slice(0,4) %}
+            <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                   title="{{ news.title }}">{{ news.title }}</a></h5>
+            <div class="intro">{{ news.introText|truncateSentence(10) }}
+            </div>
+            <br>
+
+        {% endfor %}
+
+    </div>
+</div>

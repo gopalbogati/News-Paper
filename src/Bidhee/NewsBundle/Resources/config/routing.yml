@@ -1,0 +1,31 @@
+bidhee_admin_news_list:
+    path:     /admin/news/list
+    defaults: { _controller: BidheeNewsBundle:News:index }
+
+bidhee_admin_news_create:
+    path:     /admin/news/new
+    defaults: { _controller: BidheeNewsBundle:News:create }
+
+bidhee_admin_news_update:
+    path:     /admin/news/{id}/update
+    defaults: { _controller: BidheeNewsBundle:News:create }
+
+bidhee_admin_ajax_toggle_news:
+    path: /admin/ajax/news/toggle
+    defaults: { _controller: BidheeNewsBundle:Ajax:toggle }
+
+bidhee_admin_ajax_search_related_news:
+    path: /admin/ajax/related-news/search
+    defaults: { _controller: BidheeNewsBundle:Ajax:searchRelatedNews }
+
+bidhee_admin_ajax_search_trending_news:
+    path: /admin/ajax/trending-news/search
+    defaults: { _controller: BidheeNewsBundle:Ajax:searchTrendingNews }
+
+bidhee_admin_news_trash:
+    path:     /admin/news/{id}/trash
+    defaults: { _controller: BidheeNewsBundle:News:trash }
+
+bidhee_admin_news_delete:
+    path:     /admin/news/{id}/delete
+    defaults: { _controller: BidheeNewsBundle:News:delete }

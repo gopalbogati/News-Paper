@@ -1,0 +1,15 @@
+bidhee_admin_content_index:
+    path:     /admin/content
+    defaults: { _controller: BidheeContentBundle:Content:index }
+
+bidhee_admin_content_create:
+    path:     /admin/content/create
+    defaults: { _controller: BidheeContentBundle:Content:create }
+
+bidhee_admin_content_edit:
+    path:     /admin/content/{id}/edit
+    defaults: { _controller: BidheeContentBundle:Content:edit }
+
+bidhee_admin_content_delete:
+    path:     /admin/content/{id}/delete
+    defaults: { _controller: BidheeContentBundle:Content:delete }

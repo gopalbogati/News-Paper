@@ -1,0 +1,93 @@
+{% extends 'BidheeFrontendBundle::layout.html.twig' %}
+{% block content %}
+    {% include '@BidheeFrontend/Add/add_inner_top.html.twig' %}
+
+
+    <section id="wrapper">
+        <div class="container">
+            <div class="col-12">
+                <div class="archive">
+                    <form action="{{ path('bidhee_frontend_archive') }}">
+                        <div class="block date"><input type="text" name="from" value="{{ app.request.get('from') }}"
+                                                       data-field="date"
+                                                       data-format="yyyy-MM-dd" placeholder="बाट"></div>
+                        <!-- <div class="block">देखि</div> -->
+                        <div class="block date"><input type="text" name="to" value="{{ app.request.get('to') }}"
+                                                       data-field="date"
+                                                       data-format="yyyy-MM-dd" placeholder="सम्म"></div>
+                        <!-- <div class="block"></div> -->
+                        <div class="block title"><input type="text" name="title" value="{{ app.request.get('title') }}"
+                                                        placeholder="शीर्षक"></div>
+                        <div class="block btn">
+                            <button type="submit">खोज्नुहोस</button>
+                        </div>
+                    </form>
+                    <!-- For Date Picker -->
+                    <div id="dtBox"></div>
+                    <!-- End -->
+                </div>
+            </div>
+            <div class="col-12">
+                <!-- Main Content -->
+                <article>
+                    <div class="heading">
+                        <span><a href="{{ path('bidhee_frontend_archive') }}" title="अभिलेखालय">अभिलेखालय</a></span>
+                    </div>
+                    <div class="newslist">
+                        {% if(archiveNews|length>0) %}
+                            {% for news in archiveNews %}
+                                <div class="box">
+                                    <h3><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                           title="{{ news.title }}">{{ news.title }}</a></h3>
+                                    <div class="tbl">
+                                        <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                                   title="{{ news.title }}">
+                                                {% if news.featuredImage is not null %}
+                                                    <img src="{{ news.featuredImage|relative_path|imagine_filter('bidhee_thumbnail_250_150') }}"
+                                                         height="150" width="250" alt="{{ news.title }}">
+                                                {% endif %}
+                                            </a>
+                                        </figure>
+                                        <div class="intro">
+                                            ​{{ news.introText }}
+                                            <div class="readon"><a
+                                                        href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                                        title="{{ news.title }}">थप
+                                                    समाचार...</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        {% else %}
+                            <div class="box">
+                                <h1> तपाईंले खोजे अनुसार को कुनै पनी सामाचार अभिलेखालय छैन !! </h1>
+                            </div>
+                        {% endif %}
+
+
+                    </div>
+                    <div class="pagenav">
+                        <!-- Pagination -->
+                        {{ knp_pagination_render(archiveNews)|raw }}
+
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside>
+                    {% include '@BidheeFrontend/Add/add_inner_top_right.html.twig' %}
+
+                    {% include '@BidheeFrontend/News/shared/inner_trending_taja.html.twig' %}
+
+                    {% include '@BidheeFrontend/Add/add_inner_before_model_watch.html.twig' %}
+
+                    {% include '@BidheeFrontend/Model-watch/model_watch.html.twig' %}
+
+                    {% include '@BidheeFrontend/Add/add_inner_after_model_watch.html.twig' %}
+                </aside>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

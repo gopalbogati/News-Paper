@@ -1,0 +1,18 @@
+<div class="lokpraye">
+    <div class="lokpraye-head">
+        <h2>लोकप्रिय</h2>
+    </div>
+    <!--lokpraye-head-->
+    {% for news in getTrendingNews(10) %}
+        <div class="row">
+            <div class="number"><i class="fa fa-angle-double-right"></i></div>
+
+            <div class="news_head">
+                <a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}">{{ news.title }}</a>
+            </div>
+            <!--news_head-->
+            <div class="clearfix"></div>
+        </div>
+    {% endfor %}
+    <!--row-->
+</div>

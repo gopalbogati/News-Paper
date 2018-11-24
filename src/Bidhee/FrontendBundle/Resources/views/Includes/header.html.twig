@@ -1,0 +1,142 @@
+{% if categoryId is not defined %}
+    {% set categoryId ='' %}
+{% endif %}
+<body>
+<section id="respHeader">
+    <div class="container">
+        <div class="col-12">
+            <div class="logo">
+                <a href="{{ path('bidhee_frontend_homepage') }}">
+                    <img src="{{ asset('assets/images/style/logo.png') }}" height="250" width="715" alt=""/>
+                </a>
+            </div>
+            <button class="btn_nav"><i class="fa fa-bars"></i></button>
+            <div class="search">
+                <form action="{{ path('bidhee_frontend_news_search') }}">
+                    <input type="text" name="key" placeholder="Search" value="{{ app.request.get('key') }}"/>
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+<header>
+    <div class="container">
+        <div class="col-12">
+            <div class="topBar">
+                <div class="search">
+                    <form action="{{ path('bidhee_frontend_news_search') }}">
+                        <input type="text" name="key" placeholder="Search" value="{{ app.request.get('key') }}"/>
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="social">
+                    <ul>
+                        <li>
+                            {#<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/janatasamachar"#}
+                                 {#data-width="80px"#}
+                                 {#data-action="like"#}
+                                 {#data-share="false"#}
+                                 {#data-layout="button_count"#}
+                                 {#data-show-faces="true">#}
+                            {#</div>#}
+                            <div class="fb-like" data-href="https://www.facebook.com/janatasamachar"
+                                 data-width="80px"
+                                 data-action="like"
+                                 data-share="false"
+                                 data-layout="button_count"
+                                 data-show-faces="true">
+                            </div>
+
+                        </li>
+                        <li><a class="twitter-follow-button" href="https://twitter.com/janatasamachar"></a></li>
+                    </ul>
+                </div>
+                {#<ul>#}
+
+                    {#<li>#}
+                        {#Tel: <a href="tel:+977-1-4107223"> +977-1-4107223</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#Email: <a href="mailto:news@janatanetwork.com" target="_blank">news@janatanetwork.com</a>#}
+                    {#</li>#}
+
+                {#</ul>#}
+            </div>
+            <div class="footBar">
+                <div class="logo">
+                    <a href="{{ path('bidhee_frontend_homepage') }}">
+                        <img src="{{ asset('assets/images/style/logo.png') }}" height="250" width="715"
+                             alt="Janata Samachar"/>
+                    </a>
+                </div>
+                <div class="bigyapan">
+                    {% set innerTop = getAds('above-header-menu',1) %}
+                    {% if innerTop|length > 0 %}
+                        {% for ad in innerTop %}
+                            {% if ad.file is not null %}
+                                <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}"><img src="{{ ad.file }}"
+                                                                                                height="96" width="780"
+                                                                                                alt=""/></a>
+                                </figure>
+                            {% elseif ad.script is not null %}
+                                {{ ad.script|raw }}
+                            {% endif %}
+                        {% endfor %}
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <div class="col-12">
+                <ul class="mainamenu">
+                    {% set menuItems = getMenuItems(categoryId+0) %}
+                    {% set menuCount = 0 %}
+                    <li><a href="{{ path('bidhee_frontend_homepage') }}" title=""><i class="fa fa-home"></i></a></li>
+
+                    {% for menuItem in menuItems %}
+                        {% if menuCount <=12 %}
+                            <li class="{{ menuItem.status }}"><a
+                                        href="{{ url('bidhee_frontend_news_by_category',{'id':menuItem.id},{'alias': menuItem.alias}) }}">{{ menuItem.name }}
+                                </a></li>
+
+
+                            {% set menuCount = menuCount + 1 %}
+
+                        {% endif %}
+                    {% endfor %}
+
+                    <li class="more">
+                        <span>थप</span>
+                        <ul>
+                            {% set menuCount = 0 %}
+
+                            {% for menuItem in menuItems %}
+                                {% if menuCount <=12 %}
+
+                                {% else %}
+                                    <li>
+                                        <a href="{{ url('bidhee_frontend_news_by_category',{'id':menuItem.id},{'alias': menuItem.alias}) }}">{{ menuItem.name }}
+                                        </a>
+                                    </li>
+
+                                {% endif %}
+                                {% set menuCount = menuCount + 1 %}
+                            {% endfor %}
+                            <li{{ (app.request.attributes.get('_route') == 'bidhee_frontend_archive') ? ' class="active"' }}>
+                                <a
+                                        href="{{ path('bidhee_frontend_archive') }}" title="">अभिलेखालय</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</header>

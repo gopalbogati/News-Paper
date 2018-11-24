@@ -1,0 +1,21 @@
+header,
+nav,
+aside,
+.noprint,
+.share,
+.banner,
+.detailfooter .count,
+.detailfooter .like,
+.breadcrumb,
+.comments,
+.mod_related,
+.mod_popular,
+footer {
+	display: none!important;
+}
+
+article {
+	float: none!important;
+	padding-right: 0!important;
+	width: 100%!important;
+}

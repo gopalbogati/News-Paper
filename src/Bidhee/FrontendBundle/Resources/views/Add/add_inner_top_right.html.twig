@@ -1,0 +1,16 @@
+<div class="banner">
+    <div class="banner">
+        {% set innerTop = getAds('inner-top-right',12) %}
+        {% if innerTop|length > 0 %}
+            {% for ad in innerTop %}
+                <figure><a href="{{ ad.adLink }}" title="{{ ad.adTitle }}">
+                {% if ad.file is not null %}
+                    <img src="{{ ad.file }}" alt=""></a></figure>
+                {% elseif ad.script is not null %}
+                    {{ ad.script|raw }}
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+    </div>
+</div>

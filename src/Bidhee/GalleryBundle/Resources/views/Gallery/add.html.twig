@@ -1,0 +1,52 @@
+{% extends "BidheeAdminBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-12">
+        <a href="{{ url('bidhee_admin_gallery_list') }}"><i class="fa fa-arrow-left"></i> Back to Album</a>
+    </div>
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+                {{ form_start(form, {'attr': {'class':'validate' }}) }}
+                <div class="form-group col-md-12">
+
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+
+                </div>
+
+                <div class="form-group col-md-12">
+
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+
+                </div>
+
+                <div class="clear"></div>
+
+                <div class="form-group col-md-12 margin">
+                    {{ form_widget(form.save) }}
+                </div>
+                {{ form_end(form) }}
+
+
+                <div class="clear"></div>
+                {#{{ form_widget(form.save) }}#}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+{% block jscode %}
+    {#alert('new user');#}
+{% endblock %}
+

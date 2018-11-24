@@ -1,0 +1,86 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <div class="col-md-12 margin-bottom">
+        <a href="{{ url('bidhee_admin_content_create') }}" class="btn btn-default pull-right">
+            <i class="fa fa-plus"></i>
+            Add New Content
+        </a>
+    </div>
+
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            {% if contents|length %}
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Sort Order</th>
+                        <th>Footer Menu</th>
+                        <th>Published</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for content in contents %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ content.title }}</td>
+                            <td>{{ content.sortOrder }}</td>
+                            <td>
+                                {{ status_info(
+                                content.showOnFooterMenu,
+                                true,
+                                "Bidhee\\ContentBundle\\Entity\\Content",
+                                content.id,
+                                'showOnFooterMenu'
+                                )|raw }}
+                            </td>
+                            <td>
+                                {{ status_info(
+                                content.publish,
+                                true,
+                                "Bidhee\\ContentBundle\\Entity\\Content",
+                                content.id,
+                                'published'
+                                )|raw }}
+                            </td>
+                            <td>{{ content.createdOn|date('Y-m-d') }}</td>
+                            <td>
+                                <a href="{{ url('bidhee_admin_content_edit', {'id':content.id}) }}"
+                                   class="icon"
+                                   title="edit">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+
+                                <a href="{{ url('bidhee_admin_content_delete', {'id':content.id}) }}"
+                                   class="icon"
+                                   title="delete"
+                                   onclick="return confirm('Are you sure?');"
+                                >
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                {{ no_results('No Contents Found.')|raw }}
+            {% endif %}
+
+            <div class="clearfix">
+                <div class="col-md-12 text-right">
+                    <div class="pagerfanta">
+                        {{ pagerfanta(contents, 'twitter_bootstrap3') }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

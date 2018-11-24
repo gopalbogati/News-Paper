@@ -1,0 +1,390 @@
+{% extends 'BidheeAdminBundle::layout.html.twig' %}
+{% block content %}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="{{ asset('bundles/bidheeadmin/css/bootstrap-tagsinput.css') }}">
+    {{ form_start(form) }}
+    <div class="post-news-wrapper" id="post-news-wrapper">
+
+        <div class="col-md-12 text-left margin-bottom">
+            <input type="submit" class="btn btn-primary btn-sm" value="SAVE">
+            <a href="{{ url('bidhee_admin_news_list') }}" class="btn btn-sm btn-danger">CANCEL</a>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.title) }}
+                            {{ form_widget(form.title) }}
+                            {{ form_errors(form.title) }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.subtitle) }}
+                            {{ form_widget(form.subtitle) }}
+                            {{ form_errors(form.subtitle) }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.newsSlug) }}
+                            {{ form_widget(form.newsSlug) }}
+                            {{ form_errors(form.newsSlug) }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.categories) }}
+                            {{ form_widget(form.categories) }}
+                            {{ form_errors(form.categories) }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.introText) }}
+                            {{ form_widget(form.introText) }}
+                            {{ form_errors(form.introText) }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.content) }}
+                            {{ form_widget(form.content) }}
+                            {{ form_errors(form.content) }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <h4 class="panel-title"><strong>Additional Images</strong></h4>
+
+                        <div class="panel-body">
+
+                            <div id="dropzone" class="ability-dropzone">
+                                <div class="dz-message">
+                                    Drop files here or click to upload.<br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="panel panel-default form-horizontal">
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Author</label>
+                        <div class="col-sm-8">
+                            {{ form_widget(form.author) }}
+                        </div>
+                        {{ form_errors(form.author) }}
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Author Check</label>
+                        <div class="col-sm-8">
+                            {{ form_widget(form.authorcheck) }}
+                        </div>
+                        {{ form_errors(form.authorcheck) }}
+                    </div>
+
+                    {#<div class="form-group">
+                        <label class="col-sm-4 control-label">Status</label>
+                        <div class="col-sm-8">
+                            {{ form_widget(form.status) }}
+                        </div>
+                        {{ form_errors(form.status) }}
+                    </div>#}
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Breaking News</label>
+                        <div class="col-sm-8">
+                            {{ form_widget(form.isBreakingNews) }}
+                        </div>
+                        {{ form_errors(form.isBreakingNews) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Is Important News</label>
+                        <div class="col-sm-8">
+                            {{ form_widget(form.isImportantNews) }}
+                        </div>
+                        {{ form_errors(form.isImportantNews) }}
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel panel-default form-horizontal">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form_label(form.publishOn) }}
+                            {{ form_widget(form.publishOn) }}
+                            {{ form_errors(form.publishOn) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default form-horizontal">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="featuredImageHolder img-responsive">
+
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.featuredImage) }}
+                            {{ form_widget(form.featuredImage) }}
+                            {{ form_errors(form.featuredImage) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Image/Video Caption</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(form.caption) }}
+                        {{ form_widget(form.caption) }}
+                        {{ form_errors(form.caption) }}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Featured Video</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(form.videoLink) }}
+                        {{ form_widget(form.videoLink) }}
+                        {{ form_errors(form.videoLink) }}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Related News</h4>
+                </div>
+                <div class="panel-body">
+                    <a href="#" data-toggle="modal" data-target="#searchRelatedNews" class="btn btn-default">Add Related
+                        News</a>
+                    <table class="table" id="relatedNewsTable">
+                        {% if news and news.relatedNews|length %}
+                            {% for rn in news.relatedNews %}
+                                <tr>
+                                    <td>
+                                        <input type="hidden" value="{{ rn.id }}" name="relatedNews[]">
+                                        {{ rn.title }}
+                                    </td>
+                                    <td align="right">
+                                        <button title="Remove" onclick="removeRelatedNews(this)">&times</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+
+            {% if news and news.newsStatusLogs|length %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">News Status Log</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>#</th>
+                                <th>Status</th>
+                                <th>User</th>
+                                <th>Date</th>
+                            </tr>
+                            {% for nLog in news.newsStatusLogs|reverse %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ nLog.status }}</td>
+                                    <td>
+                                        {% if not nLog.user.name %}
+                                            {{ nLog.user.name }}
+                                        {% else %}
+                                            {{ nLog.user.username }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ nLog.createdDate|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+    <div class="col-md-12">
+        <input type="submit" class="btn btn-primary btn-lg" value="SAVE">
+        <a href="{{ url('bidhee_admin_news_list') }}" class="btn btn-lg btn-danger">CANCEL</a>
+    </div>
+
+    <div class="clearfix"></div>
+    </div>
+    {{ form_end(form) }}
+
+    <div class="clearfix"></div>
+
+    <div class="modal fade" id="searchRelatedNews" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Search Related News</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" name="searchText" id="searchRelatedNewsText"
+                           placeholder="Type to search related news">
+                    <table class="table table-bordered table-striped" id="searchResultTable">
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-cancel" data-dismiss="modal" aria-label="Close">CANCEL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/bidheeadmin/js/bootstrap-tagsinput.js') }}"></script>
+    <script src="{{ asset('bundles/bidheeadmin/js/dropzone.js') }}" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.0/inputmask/inputmask.min.js"
+            type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.0/inputmask/inputmask.date.extensions.js"
+            type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.0/min/inputmask/jquery.inputmask.min.js"
+            type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"
+            type="text/javascript"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm'
+            }).inputmask({
+                alias: 'datetime',
+                mask: 'y-m-d h:s',
+                hourFormat: '24'
+            });
+
+            //Insert current date time if empty
+            var publishDate = $('#news_publishOn').val();
+            if (publishDate == '') {
+                var a = $('#news_publishOn').val(moment().format('YYYY-MM-DD HH:mm'));
+            }
+
+            $('#searchRelatedNewsText').on('keydown', function () {
+                var text = $(this).val();
+                if (text.length < 3) {
+                    return
+                }
+
+                $.ajax({
+                    type: 'get',
+                    url: '{{ url('bidhee_admin_ajax_search_related_news') }}',
+                    data: {search: text},
+                    success: function (res) {
+                        var html = '';
+                        if (res.length) {
+                            $.each(res, function (i, v) {
+                                html = html + '<tr onclick="selectReletedSearch(this, ' + v.id + ',\'' + v.title + '\')">';
+                                html = html + '<td width="30"> <input type="checkbox" title="select"> </td>';
+                                html = html + '<td>' + v.title + '</td></tr>';
+                            });
+                        }
+                        $('table#searchResultTable').html(html);
+                    },
+                    error: function (res) {
+                    }
+                });
+            });
+        });
+
+        function removeRelatedNews(obj) {
+            var self = $(obj);
+            self.parent('td').parent('tr').remove();
+        }
+
+        function selectReletedSearch(obj, id, title) {
+            var self = $(obj);
+
+            if ($('#relatedNewsTable input[value="' + id + '"]').length) {
+                self.remove();
+                return;
+            }
+
+            var html = '';
+            html = html + '<tr>';
+            html = html + '<td>';
+            html = html + '<input type="hidden" value="' + id + '" name="relatedNews[]">';
+            html = html + title;
+            html = html + '</td>';
+            html = html + '<td align="right">';
+            html = html + '<button title="Remove" onclick="removeRelatedNews(this)">&times</button>';
+            html = html + '</td>';
+            html = html + '</tr>';
+
+            $('#relatedNewsTable').append($(html));
+            self.remove();
+        }
+
+        $(function () {
+            var newsImages = {{ images|json_encode|raw }};
+            Dropzone.autoDiscover = false;
+            var myDropzone = new Dropzone("div#dropzone", {
+                url: "{{ oneup_uploader_endpoint('news_images') }}",
+                addRemoveLinks: true,
+            });
+
+            if (newsImages.length > 0) {
+                newsImages.forEach(function (image) {
+                    var mock = {name: image.name, size: image.size};
+                    myDropzone.emit("addedfile", mock);
+                    myDropzone.emit("thumbnail", mock, decodeURI(image.thumbnail));
+                    myDropzone.emit("complete", mock);
+                });
+
+                myDropzone.options.maxFiles = myDropzone.options.maxFiles - newsImages.length;
+            }
+
+            myDropzone.on("success", function (e) {
+                var res = $.parseJSON(e.xhr.response);
+                console.log(res.image_id);
+
+                $("#post-news-wrapper").append("<input id='ad_image_" + res.image_id + "' type='hidden' name='image[]' value='" + res.image_id + "' />")
+
+            }).on('removedfile', function (e) {
+                console.log(e);
+
+                $("#post-news-wrapper").append("<input type='hidden' name='remove_image[]' value='" + e.name + "' />");
+            });
+
+
+        });
+
+    </script>
+{% endblock scripts %}
+

@@ -1,0 +1,32 @@
+<section>
+    <div class="container">
+        <div class="mod_feature">
+            <div class="col-12">
+                <div class="heading">
+                    <span><a href="{{ url('bidhee_frontend_news_by_category', {'id':9}) }}" title="">फिचर</a></span>
+                    <a href="{{ url('bidhee_frontend_news_by_category', {'id':9}) }}" class="more">थप फिचर</a>
+                </div>
+            </div>
+            {% if featuredNews %}
+                {% for key,news in featuredNews %}
+                    <div class="col-3">
+                        {% if news.featuredImage %}
+                            <figure><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}"
+                                       title="{{ news.title }}"><img
+                                            src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_270_160') }}"
+                                            alt=""></a>
+                            </figure>
+                        {% endif %}
+                        <h5><a href="{{ path('bidhee_frontend_news', {'id': news.id}) }}" title="">{{ news.title }}</a>
+                        </h5>
+                        <div class="intro">{#<div class="overflow">#}
+                            {{ news.publishOn|date('Y-m-d')|nepaliDate }},
+                                {% if news.authorcheck == true %}{% if news.authorName is not null%}<span class="author">{{news.authorName}}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(24) }}
+                            {#</div>#}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
