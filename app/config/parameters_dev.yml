@@ -10,5 +10,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-    per_page_limit: 20
+    per_page_limit: 12
     admin_dir_mask: googlesecure
