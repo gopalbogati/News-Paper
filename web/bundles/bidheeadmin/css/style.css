@@ -1,0 +1,420 @@
+/**
+* @author Danepliz
+*/
+
+.error {
+    color: #933;
+}
+
+label.required em.required {
+    color: #933
+}
+
+.detail-box {
+    border: 1px solid #CCC;
+    background: #FFF;
+    margin-bottom: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 6px;
+}
+
+.detail-box h4 {
+    margin: 0 0 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #CCC;
+
+}
+
+cite.info {
+    font-size: 10px;
+    color: #090;
+}
+
+a.removeImage {
+    font-size: 12px;
+    color: #FFF;
+    background: #900;
+    padding: 2px 5px;
+    margin: 2px 0 2px 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.collection-tags {
+    list-style: none;
+    margin: 0px;
+    padding: 6px;
+    background: #f6f6f6;
+    float: left;
+    width: 100%;
+}
+
+.collection-tags li {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted #d2d6de;
+    padding-bottom: 5px;
+}
+
+.collection-tags li:last-child {
+    border-bottom: none;
+}
+
+.collection-tags li div:not('.default') {
+    float: left;
+    width: 95%;
+}
+
+.collection-tags li span.removeImage {
+    float: left;
+    display: block;
+    width: 5%;
+}
+
+.collection-tags:not('.default') label {
+    display: none;
+}
+
+.collection-tags li cite {
+    font-size: 10px;
+}
+
+#dropzone {
+    min-height: 150px;
+    width: 100%;
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+    padding: 20px;
+}
+
+#dropzone .dz-message {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.ability-dropzone, .ability-dropzone * {
+    box-sizing: border-box;
+}
+
+.ability-dropzone {
+    min-height: 150px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: white;
+    padding: 20px 20px;
+}
+
+.ability-dropzone.dz-clickable {
+    cursor: pointer;
+}
+
+.ability-dropzone.dz-clickable * {
+    cursor: default;
+}
+
+.ability-dropzone.dz-clickable .dz-message, .ability-dropzone.dz-clickable .dz-message * {
+    cursor: pointer;
+}
+
+.ability-dropzone.dz-started .dz-message {
+    display: none;
+}
+
+.ability-dropzone.dz-drag-hover {
+    border-style: solid;
+}
+
+.ability-dropzone.dz-drag-hover .dz-message {
+    opacity: 0.5;
+}
+
+.ability-dropzone .dz-message {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.ability-dropzone .dz-preview {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 16px;
+    min-height: 100px;
+}
+
+.ability-dropzone .dz-preview:hover {
+    z-index: 1000;
+}
+
+.ability-dropzone .dz-preview:hover .dz-details {
+    opacity: 1;
+}
+
+.ability-dropzone .dz-preview.dz-file-preview .dz-image {
+    border-radius: 20px;
+    background: #999;
+    background: linear-gradient(to bottom, #eee, #ddd);
+}
+
+.ability-dropzone .dz-preview.dz-file-preview .dz-details {
+    opacity: 1;
+}
+
+.ability-dropzone .dz-preview.dz-image-preview {
+    background: white;
+}
+
+.ability-dropzone .dz-preview.dz-image-preview .dz-details {
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.ability-dropzone .dz-preview .dz-remove {
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    border: none;
+}
+
+.ability-dropzone .dz-preview .dz-remove:hover {
+    text-decoration: underline;
+}
+
+.ability-dropzone .dz-preview:hover .dz-details {
+    opacity: 1;
+}
+
+.ability-dropzone .dz-preview .dz-details {
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    font-size: 13px;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 2em 1em;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 150%;
+}
+
+.ability-dropzone .dz-preview .dz-details .dz-size {
+    margin-bottom: 1em;
+    font-size: 16px;
+}
+
+.ability-dropzone .dz-preview .dz-details .dz-filename {
+    white-space: nowrap;
+}
+
+.ability-dropzone .dz-preview .dz-details .dz-filename:hover span {
+    border: 1px solid rgba(200, 200, 200, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.ability-dropzone .dz-preview .dz-details .dz-filename:not(:hover) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ability-dropzone .dz-preview .dz-details .dz-filename:not(:hover) span {
+    border: 1px solid transparent;
+}
+
+.ability-dropzone .dz-preview .dz-details .dz-filename span, .ability-dropzone .dz-preview .dz-details .dz-size span {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 0 0.4em;
+    border-radius: 3px;
+}
+
+.ability-dropzone .dz-preview:hover .dz-image img {
+    -webkit-transform: scale(1.05, 1.05);
+    -moz-transform: scale(1.05, 1.05);
+    -ms-transform: scale(1.05, 1.05);
+    -o-transform: scale(1.05, 1.05);
+    transform: scale(1.05, 1.05);
+    -webkit-filter: blur(8px);
+    filter: blur(8px);
+}
+
+.ability-dropzone .dz-preview .dz-image {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+
+.ability-dropzone .dz-preview .dz-image img {
+    display: block;
+}
+
+.ability-dropzone .dz-preview.dz-success .dz-success-mark {
+    -webkit-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+    -moz-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+    -ms-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+    -o-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+    animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.ability-dropzone .dz-preview.dz-error .dz-error-mark {
+    opacity: 1;
+    -webkit-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
+    -moz-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
+    -ms-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
+    -o-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
+    animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.ability-dropzone .dz-preview .dz-success-mark, .ability-dropzone .dz-preview .dz-error-mark {
+    pointer-events: none;
+    opacity: 0;
+    z-index: 500;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    margin-left: -27px;
+    margin-top: -27px;
+}
+
+.ability-dropzone .dz-preview .dz-success-mark svg, .ability-dropzone .dz-preview .dz-error-mark svg {
+    display: block;
+    width: 54px;
+    height: 54px;
+}
+
+.ability-dropzone .dz-preview.dz-processing .dz-progress {
+    opacity: 1;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.ability-dropzone .dz-preview.dz-complete .dz-progress {
+    opacity: 0;
+    -webkit-transition: opacity 0.4s ease-in;
+    -moz-transition: opacity 0.4s ease-in;
+    -ms-transition: opacity 0.4s ease-in;
+    -o-transition: opacity 0.4s ease-in;
+    transition: opacity 0.4s ease-in;
+}
+
+.ability-dropzone .dz-preview:not(.dz-processing) .dz-progress {
+    -webkit-animation: pulse 6s ease infinite;
+    -moz-animation: pulse 6s ease infinite;
+    -ms-animation: pulse 6s ease infinite;
+    -o-animation: pulse 6s ease infinite;
+    animation: pulse 6s ease infinite;
+}
+
+.ability-dropzone .dz-preview .dz-progress {
+    opacity: 1;
+    z-index: 1000;
+    pointer-events: none;
+    position: absolute;
+    height: 16px;
+    left: 50%;
+    top: 50%;
+    margin-top: -8px;
+    width: 80px;
+    margin-left: -40px;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-transform: scale(1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ability-dropzone .dz-preview .dz-progress .dz-upload {
+    background: #333;
+    background: linear-gradient(to bottom, #666, #444);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    -webkit-transition: width 300ms ease-in-out;
+    -moz-transition: width 300ms ease-in-out;
+    -ms-transition: width 300ms ease-in-out;
+    -o-transition: width 300ms ease-in-out;
+    transition: width 300ms ease-in-out;
+}
+
+.ability-dropzone .dz-preview.dz-error .dz-error-message {
+    display: block;
+}
+
+.ability-dropzone .dz-preview.dz-error:hover .dz-error-message {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ability-dropzone .dz-preview .dz-error-message {
+    pointer-events: none;
+    z-index: 1000;
+    position: absolute;
+    display: block;
+    display: none;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    font-size: 13px;
+    top: 130px;
+    left: -10px;
+    width: 140px;
+    background: #be2626;
+    background: linear-gradient(to bottom, #be2626, #a92222);
+    padding: 0.5em 1.2em;
+    color: white;
+}
+
+.ability-dropzone .dz-preview .dz-error-message:after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 64px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #be2626;
+}
+
+.bx-wrapper .bx-controls-direction a {
+    z-index: 999;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #333 !important;
+}
+
+table tr.even {
+    background: #efefef;
+}
+
+.skin-red .main-header .navbar {
+    background-color: #068627;
+}
+
+.skin-red .main-header .logo {
+    background-color: #068627;
+}
+.main-sidebar, .skin-red .left-side {
+    background-color: #095019;
+}
