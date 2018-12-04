@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/googlene/public_html/gnp
+    - /bin/cp $DEPLOYPATH
