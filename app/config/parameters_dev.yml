@@ -2,9 +2,9 @@
 parameters:
     database_host: 207.180.212.241
     database_port: null
-    database_name: googlene_db_janata
-    database_user: googlene_db_janata
-    database_password: Catgol12!
+    database_name: googlene_gnp
+    database_user: googlene_gnp
+    database_password: JFE[;Y-!r@g~
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
