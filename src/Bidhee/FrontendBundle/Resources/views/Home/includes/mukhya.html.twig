@@ -37,10 +37,10 @@
                                                         height="65" width="100" alt="{{ news.title }}"></a></figure>
                                     {% endif %}
                                     <div class="intro">
-                                        {#<div class="overflow">#}
-                                            {#{% if news.authorcheck == true %}{% if news.authorName is not null %}<span#}
-                                                    {#class="author">{{ news.authorName }}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(7) }}#}
-                                        {#</div>#}{#{{ news.introText|truncateSentence(8) }}#}
+                                        <div class="overflow">
+                                            {% if news.authorcheck == true %}{% if news.authorName is not null %}<span
+                                                    class="author">{{ news.authorName }}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(7) }}
+                                        </div>{#{{ news.introText|truncateSentence(8) }}#}
                                     </div>
                                 </div>
                             </li>
@@ -100,10 +100,10 @@
                                                         src="{{ news.featuredImage|relative_path| imagine_filter('bidhee_thumbnail_100_65') }}"
                                                         alt=""></a></figure>
                                     {% endif %}
-                                    {#<div class="intro">#}
-                                        {#<div class="overflow">{% if news.authorcheck == true %}{% if news.authorName is not null %}#}
-                                            {#<span class="author">{{ news.authorName }}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(15) }}#}
-                                        {#</div>#}
+                                    <div class="intro">
+                                        <div class="overflow">{% if news.authorcheck == true %}{% if news.authorName is not null %}
+                                            <span class="author">{{ news.authorName }}{% endif %}{% endif %}</span> {{ news.introText|truncateSentence(15) }}
+                                        </div>
                                     </div>
                                 </div>
                             </li>

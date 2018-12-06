@@ -34,7 +34,7 @@ final class Versions
   'friendsofsymfony/rest-bundle' => '1.7.7@c79b7e5df96e5581591ceb6a026bd4e5f9346de0',
   'friendsofsymfony/user-bundle' => 'dev-master@031bad8ef433f70faa000ddb4f06c873c217423d',
   'gedmo/doctrine-extensions' => 'v2.4.36@87c78ff9fd4b90460386f753d95622f6fbbfcb27',
-  'guzzlehttp/psr7' => '1.4.2@f5b8a8512e2b58b0071a7280e39f14f72e05d87c',
+  'guzzlehttp/psr7' => '1.5.2@9f83dded91781a01c63574e387eaa769be769115',
   'helios-ag/fm-elfinder-bundle' => '5.3@01545d6343fdeafb7f308d16e14f42e36d3ddb6d',
   'helios-ag/fm-elfinder-php-connector' => '2.5.9@d6b28121fd7aba089c02c5638cdda6466f760ffa',
   'imagine/imagine' => 'v0.6.3@149041d2a1b517107bfe270ca2b1a17aa341715d',
@@ -69,6 +69,7 @@ final class Versions
   'psr/http-message' => '1.0.1@f6561bf28d520154e4b0ec72be95418abe6d9363',
   'psr/log' => '1.1.0@6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd',
   'pugx/multi-user-bundle' => 'dev-master@226a5adf3f23f9820cbe038f351e59fe2e268d7b',
+  'ralouphie/getallheaders' => '2.0.5@5601c8a83fbba7ef674a7369456d12f1e0d0eafa',
   'richsage/rms-push-notifications-bundle' => '0.2.2@052b4f9379fabc03aed7ca8991ebaa2447546da1',
   'robloach/component-installer' => '0.2.3@908a859aa7c4949ba9ad67091e67bac10b66d3d7',
   'sensio/distribution-bundle' => 'v5.0.23@088b116a0e27faa0e1a7384dd4f3f6a9d5a8a3b6',
@@ -99,7 +100,7 @@ final class Versions
   'zendframework/zend-code' => '3.1.0@2899c17f83a7207f2d7f53ec2f421204d3beea27',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
   'symfony/phpunit-bridge' => 'v2.8.48@2a71753e11f4094a4ccd0acf5e9f6a962a1a2787',
-  'bidhee/nagarik-news' => 'dev-master@7a13a4e6da7ca33503f3f512c9280610b62f11d2',
+  'bidhee/nagarik-news' => 'dev-master@7698336dab07035dfb077436f9245d234d4513ef',
 );
 
     private function __construct()

@@ -1,19 +1,7 @@
-<IfModule mod_rewrite.c>
-    Options +FollowSymlinks
-    RewriteEngine On
-
-    # Explicitly disable rewriting for front controllers
-    RewriteRule ^/web/app_dev.php - [L]
-    RewriteRule ^/web/app.php - [L]
-
-    # Fix the bundles folder
-    RewriteRule ^bundles/(.*)$ /web/bundles/$1  [QSA,L]
-
-    # Fix the assets folder
-    RewriteRule ^assets/(.*)$ /web/assets/$1  [QSA,L]
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    # Change below before deploying to production
-    #RewriteRule ^(.*)$ /web/app.php [QSA,L]
-    RewriteRule ^(.*)$ /web/app_dev.php [QSA,L]
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
 </IfModule>

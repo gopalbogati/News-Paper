@@ -1,14 +1,14 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: localhost
+    database_host: 207.180.212.241
     database_port: null
-    database_name: db_google
-    database_user: root
-    database_password: null
+    database_name: googlene_news
+    database_user: googlene_news
+    database_password: 'p}}7oxp4q3Gr'
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-    per_page_limit: 20
+    per_page_limit: 12
     admin_dir_mask: googlesecure

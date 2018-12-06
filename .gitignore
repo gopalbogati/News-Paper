@@ -9,6 +9,7 @@
 /bin/
 /app/config/parameters_live.yml
 /app/bootstrap.php.cache
+/app/config/parameters_dev.yml
 /app/phpunit.xml.dist
 /web/.htaccess_example
 /web/media/cache
