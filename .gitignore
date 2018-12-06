@@ -1,6 +1,6 @@
 /vendor
 /app/logs
-/app/cache
+/app/cache/
 /composer.lock
 /web/uploads
 /web/bundles/
