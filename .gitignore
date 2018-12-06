@@ -1,13 +1,13 @@
 /vendor
 /app/logs
 /app/cache
-/app/config/parameters.yml
 /composer.lock
 /web/uploads
 /web/bundles/
 .idea/
 /bin/
 /app/config/parameters_live.yml
+/app/config/parameters.yml
 /app/bootstrap.php.cache
 /app/config/parameters_dev.yml
 /app/phpunit.xml.dist
