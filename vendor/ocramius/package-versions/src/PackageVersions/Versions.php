@@ -100,7 +100,7 @@ final class Versions
   'zendframework/zend-code' => '3.1.0@2899c17f83a7207f2d7f53ec2f421204d3beea27',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
   'symfony/phpunit-bridge' => 'v2.8.48@2a71753e11f4094a4ccd0acf5e9f6a962a1a2787',
-  'bidhee/nagarik-news' => 'dev-master@e48210bf505bf527b5b90d1814308fb8568b9f03',
+  'bidhee/nagarik-news' => 'dev-master@a1ea19d296ac525dcbdfdef3d1fe8a04f06bd177',
 );
 
     private function __construct()

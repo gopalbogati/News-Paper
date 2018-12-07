@@ -79,14 +79,14 @@
         <div class="col-4">
             <div class="tabber">
                 <ul class="options">
-                    <li><a href="#tab-1" title="">Live Updates</a></li>
+                    {#<li><a href="#tab-1" title="">Live Updates</a></li>#}
                     <li><a href="#tab-2" title="">ताजा अपडेट</a></li>
                     <li><a href="#tab-3" title="">लोकप्रिय</a></li>
                     {# <li><a href="#tab-3" title="">प्रचलित</a></li>#}
                 </ul>
-                <div id="tab-1">
-                    <a class="twitter-timeline" data-height="357" href="https://twitter.com/janatasamachar">Tweets by janatasamachar</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+                {#<div id="tab-1">#}
+                    {#<a class="twitter-timeline" data-height="357" href="https://twitter.com/janatasamachar">Tweets by janatasamachar</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>#}
+                {#</div>#}
                 <div id="tab-2">
                     <ul>
                         {% for key,news in tajaUpdates|slice(0,3) %}
